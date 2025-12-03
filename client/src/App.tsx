@@ -13,6 +13,7 @@ import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import Login from "@/pages/Login";
 import Dashboard from "@/pages/Admin";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 function Router() {
   return (
@@ -35,6 +36,7 @@ function App() {
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <CustomCursor />
           <Toaster />
           <Router />
         </TooltipProvider>

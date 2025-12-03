@@ -4,10 +4,12 @@ import Hero from '@/components/home/Hero';
 import Stats from '@/components/home/Stats';
 import Testimonials from '@/components/home/Testimonials';
 import ProjectCard from '@/components/projects/ProjectCard';
+import ScrollVelocity from '@/components/home/ScrollVelocity';
 import { PROJECTS } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'wouter';
+import Magnetic from '@/components/ui/Magnetic';
 
 export default function Home() {
   const featuredProjects = PROJECTS.filter(p => p.featured).slice(0, 3);
@@ -16,6 +18,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navbar />
       <Hero />
+      <ScrollVelocity />
       <Stats />
       
       {/* Featured Projects */}
@@ -27,11 +30,13 @@ export default function Home() {
               A curated selection of my most recent and impactful projects.
             </p>
           </div>
-          <Link href="/projects">
-            <Button variant="ghost" className="hidden md:flex group">
-              View All <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
+          <Magnetic strength={20}>
+            <Link href="/projects">
+              <Button variant="ghost" className="hidden md:flex group">
+                View All <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </Magnetic>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,11 +62,13 @@ export default function Home() {
           <p className="text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto">
             Let's collaborate to create something exceptional. I'm currently accepting new projects for Q2.
           </p>
-          <Link href="/contact">
-            <Button size="lg" variant="secondary" className="rounded-full px-10 h-14 text-lg shadow-2xl hover:scale-105 transition-transform">
-              Let's Talk
-            </Button>
-          </Link>
+          <Magnetic strength={40}>
+            <Link href="/contact">
+              <Button size="lg" variant="secondary" className="rounded-full px-10 h-14 text-lg shadow-2xl hover:scale-105 transition-transform">
+                Let's Talk
+              </Button>
+            </Link>
+          </Magnetic>
         </div>
       </section>
 
