@@ -1,50 +1,101 @@
 import { Link } from 'wouter';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, ArrowRight, Heart, ArrowUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-background border-t border-border py-12 mt-20">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div className="col-span-1 md:col-span-2">
+    <footer className="relative mt-12 bg-background pt-12 pb-8 overflow-hidden">
+      {/* Ambient Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[120px] opacity-50" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[100px] opacity-30" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+
+
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12 mb-16 border-t border-white/5 pt-16">
+          <div className="col-span-2 md:col-span-4">
             <Link href="/">
-              <a className="text-2xl font-heading font-bold tracking-tighter mb-4 block">
-                Portfolio<span className="text-accent">.</span>
+              <a className="text-3xl font-heading font-bold tracking-tighter mb-6 block hover:opacity-80 transition-opacity">
+                Portfolio<span className="text-primary">.</span>
               </a>
             </Link>
-            <p className="text-muted-foreground max-w-sm">
-              Crafting digital experiences with a focus on motion, aesthetics, and performance.
+            <p className="text-muted-foreground leading-relaxed max-w-sm mb-6">
+              Crafting digital experiences with a focus on motion, aesthetics, and performance. Based in San Francisco, working globally.
             </p>
+            <div className="flex gap-4">
+              <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="https://twitter.com/your-twitter" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="mailto:your-email@example.com" className="p-2 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
           </div>
-          
-          <div>
-            <h3 className="font-bold mb-4">Navigation</h3>
-            <ul className="space-y-2">
-              <li><Link href="/projects"><a className="text-muted-foreground hover:text-primary transition-colors">Projects</a></Link></li>
-              <li><Link href="/about"><a className="text-muted-foreground hover:text-primary transition-colors">About</a></Link></li>
-              <li><Link href="/blog"><a className="text-muted-foreground hover:text-primary transition-colors">Blog</a></Link></li>
-              <li><Link href="/contact"><a className="text-muted-foreground hover:text-primary transition-colors">Contact</a></Link></li>
+
+          <div className="col-span-1 md:col-span-2 md:col-start-7">
+            <h4 className="font-bold mb-6 text-foreground/90">Explore</h4>
+            <ul className="space-y-4 text-sm">
+              {['Projects', 'About', 'Blog', 'Contact'].map((item) => (
+                <li key={item}>
+                  <Link href={`/${item.toLowerCase()}`}>
+                    <a className="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block duration-200">
+                      {item}
+                    </a>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4">Connect</h3>
-            <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Github className="h-5 w-5" /></a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="h-5 w-5" /></a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></a>
-              <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="h-5 w-5" /></a>
-            </div>
+          <div className="col-span-1 md:col-span-2 md:col-start-9">
+             <h4 className="font-bold mb-6 text-foreground/90">Legal</h4>
+             <ul className="space-y-4 text-sm">
+              {['Privacy', 'Terms', 'Cookies'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block duration-200">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Portfolio. All rights reserved.
+
+        <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-white/5">
+          <p className="text-sm text-muted-foreground mb-4 md:mb-0">
+            © {new Date().getFullYear()} Dev. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="/admin/login"><a className="hover:text-primary">Admin Login</a></Link>
-            <a href="#" className="hover:text-primary">Privacy Policy</a>
+          
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-secondary/30 px-4 py-2 rounded-full">
+              <span>Made with</span>
+              <Heart className="h-4 w-4 text-red-500 fill-red-500 animate-pulse" />
+              <span>in San Francisco</span>
+            </div>
+            
+            <Button 
+              size="icon" 
+              variant="outline" 
+              className="rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+              onClick={scrollToTop}
+            >
+              <ArrowUp className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>

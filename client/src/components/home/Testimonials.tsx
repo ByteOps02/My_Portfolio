@@ -8,10 +8,17 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TESTIMONIALS } from "@/lib/data";
+import { useQuery } from "@tanstack/react-query";
+import { type Testimonial } from "@shared/schema";
 import { Quote } from 'lucide-react';
 
 export default function Testimonials() {
+  const { data: testimonials } = useQuery<Testimonial[]>({ 
+    queryKey: ['/api/testimonials'] 
+  });
+
+  if (!testimonials) return null;
+
   return (
     <section className="py-24 container mx-auto px-6">
       <div className="text-center mb-16">
@@ -30,7 +37,7 @@ export default function Testimonials() {
         className="w-full max-w-4xl mx-auto"
       >
         <CarouselContent>
-          {TESTIMONIALS.map((testimonial) => (
+          {testimonials.map((testimonial) => (
             <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/2 p-4">
               <div className="p-1">
                 <Card className="bg-card/50 backdrop-blur-sm border-primary/10 hover:border-primary/30 transition-all h-full">

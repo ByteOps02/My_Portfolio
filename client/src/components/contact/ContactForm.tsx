@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2, Send } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -25,7 +26,6 @@ const formSchema = z.object({
 
 export default function ContactForm() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,18 +37,27 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+  const mutation = useMutation({
+    mutationFn: (values: z.infer<typeof formSchema>) => 
+      apiRequest('POST', '/api/contact', values),
+    onSuccess: () => {
       toast({
         title: "Message sent!",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
       form.reset();
-    }, 1500);
+    },
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+      });
+    }
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    mutation.mutate(values);
   }
 
   return (
@@ -115,8 +124,8 @@ export default function ContactForm() {
           )}
         />
         
-        <Button type="submit" size="lg" className="w-full md:w-auto" disabled={isSubmitting}>
-          {isSubmitting ? (
+        <Button type="submit" size="lg" className="w-full md:w-auto" disabled={mutation.isPending}>
+          {mutation.isPending ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Sending...

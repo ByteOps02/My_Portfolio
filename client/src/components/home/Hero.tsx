@@ -2,9 +2,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
-import { ASSETS } from '@/lib/data';
 import Magnetic from '@/components/ui/Magnetic';
 import TextReveal from '@/components/ui/TextReveal';
+
+import TypewriterLoop from '@/components/ui/TypewriterLoop';
 
 export default function Hero() {
   const { scrollY } = useScroll();
@@ -21,7 +22,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         
         <img 
-          src={ASSETS.heroBg} 
+          src="/images/abstract_dark_premium_fluid_background_for_hero_section.png"
           alt="Abstract Background" 
           className="w-full h-full object-cover opacity-60 mix-blend-screen dark:mix-blend-lighten"
         />
@@ -36,7 +37,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 border border-primary/20 backdrop-blur-sm">
-            Available for freelance work
+            Open to New Opportunities
           </span>
         </motion.div>
 
@@ -53,7 +54,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          I craft premium web applications with modern technologies. 
+          I craft <TypewriterLoop words={["premium web applications", "scalable cloud systems", "interactive digital products"]} className="font-semibold text-foreground" /> with modern technologies. 
           Focusing on motion, accessibility, and user-centric design.
         </motion.p>
 

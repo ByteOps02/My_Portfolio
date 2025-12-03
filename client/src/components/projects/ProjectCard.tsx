@@ -2,7 +2,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'wouter';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Project } from '@/lib/data';
+import { type Project } from '@shared/schema';
 
 export default function ProjectCard({ project }: { project: Project }) {
   const x = useMotionValue(0);
