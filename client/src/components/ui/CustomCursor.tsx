@@ -1,64 +1,72 @@
-import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
 
 export default function CustomCursor() {
-  const [isHovering, setIsHovering] = useState(false);
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-  
-  const springConfig = { damping: 25, stiffness: 700 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const [isVisible, setIsVisible] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const positionRef = useRef({ x: -100, y: -100 });
+  const hoveringRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isSmallScreen = window.innerWidth < 768;
+    
+    if (isTouchDevice || isSmallScreen) {
+      setIsVisible(false);
+      return;
+    }
+    
+    setIsVisible(true);
+
+    const updateCursor = () => {
+      if (cursorRef.current && ringRef.current) {
+        const { x, y } = positionRef.current;
+        const isHovering = hoveringRef.current;
+        const scale = isHovering ? 2.5 : 1;
+        
+        cursorRef.current.style.transform = `translate3d(${x - 8}px, ${y - 8}px, 0) scale(${isHovering ? 0 : 1})`;
+        ringRef.current.style.transform = `translate3d(${x - 16}px, ${y - 16}px, 0) scale(${scale})`;
+        ringRef.current.style.backgroundColor = isHovering ? 'rgba(255, 255, 255, 1)' : 'transparent';
+        ringRef.current.style.borderColor = isHovering ? 'transparent' : 'currentColor';
+      }
+      rafRef.current = requestAnimationFrame(updateCursor);
+    };
+
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+      positionRef.current = { x: e.clientX, y: e.clientY };
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      hoveringRef.current = !!(target.tagName === 'A' || target.tagName === 'BUTTON' || 
+                           target.closest('a') || target.closest('button'));
     };
 
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleMouseOver);
+    rafRef.current = requestAnimationFrame(updateCursor);
+    window.addEventListener('mousemove', moveCursor, { passive: true });
+    window.addEventListener('mouseover', handleMouseOver, { passive: true });
 
     return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener('mousemove', moveCursor);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [cursorX, cursorY]);
+  }, []);
+
+  if (!isVisible) return null;
 
   return (
     <>
-      {/* Main dot */}
-      <motion.div
+      <div
+        ref={cursorRef}
         className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-          scale: isHovering ? 0 : 1,
-        }}
+        style={{ willChange: 'transform', transition: 'transform 0.15s ease-out' }}
       />
-      
-      {/* Expanding ring */}
-      <motion.div
+      <div
+        ref={ringRef}
         className="fixed top-0 left-0 w-8 h-8 border border-primary rounded-full pointer-events-none z-[9998] mix-blend-difference"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-          translateX: -8,
-          translateY: -8,
-          scale: isHovering ? 2.5 : 1,
-          backgroundColor: isHovering ? 'rgba(255, 255, 255, 1)' : 'transparent',
-          borderColor: isHovering ? 'transparent' : 'currentColor',
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
+        style={{ willChange: 'transform', transition: 'transform 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out' }}
       />
     </>
   );
