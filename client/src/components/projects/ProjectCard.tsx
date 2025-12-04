@@ -2,7 +2,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'wouter';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { type Project } from '@shared/schema';
+import { type Project } from '@/lib/data';
 
 export default function ProjectCard({ project }: { project: Project }) {
   const x = useMotionValue(0);
@@ -17,8 +17,8 @@ export default function ProjectCard({ project }: { project: Project }) {
     y.set((clientY - top) / height - 0.5);
   }
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [7, -7]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-7, 7]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
 
   return (
     <Link href={`/project/${project.id}`}>
@@ -33,40 +33,46 @@ export default function ProjectCard({ project }: { project: Project }) {
           x.set(0);
           y.set(0);
         }}
-        className="group relative cursor-pointer rounded-xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
+        className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500"
       >
-        <div style={{ transform: "translateZ(50px)" }} className="relative aspect-[4/3] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+        <div style={{ transform: "translateZ(50px)" }} className="relative aspect-[16/10] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
           <img 
             src={project.image} 
             alt={project.title} 
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
+          <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+              <ArrowUpRight className="h-5 w-5 text-black" />
+            </div>
+          </div>
         </div>
 
-        <div style={{ transform: "translateZ(20px)" }} className="p-6 bg-card relative z-20">
-          <div className="flex justify-between items-start mb-2">
+        <div style={{ transform: "translateZ(30px)" }} className="p-6 bg-card relative z-20">
+          <div className="flex justify-between items-start mb-3">
             <div>
-              <p className="text-sm font-medium text-primary mb-1">{project.category}</p>
-              <h3 className="text-2xl font-bold font-heading group-hover:text-primary transition-colors">
+              <Badge variant="outline" className="mb-2 text-primary border-primary/30 bg-primary/5">
+                {project.category}
+              </Badge>
+              <h3 className="text-2xl font-bold font-heading group-hover:text-primary transition-colors duration-300">
                 {project.title}
               </h3>
             </div>
-            <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1 group-hover:-translate-y-1" />
           </div>
           
-          <p className="text-muted-foreground mb-4 line-clamp-2">
+          <p className="text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
             {project.description}
           </p>
 
           <div className="flex flex-wrap gap-2">
             {project.technologies.slice(0, 3).map((tech) => (
-              <Badge key={tech} variant="secondary" className="rounded-md">
+              <Badge key={tech} variant="secondary" className="rounded-md font-normal">
                 {tech}
               </Badge>
             ))}
             {project.technologies.length > 3 && (
-              <Badge variant="secondary" className="rounded-md">
+              <Badge variant="secondary" className="rounded-md font-normal">
                 +{project.technologies.length - 3}
               </Badge>
             )}
