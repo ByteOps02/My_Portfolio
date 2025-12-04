@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertMessageSchema, insertProjectSchema, insertBlogPostSchema } from "@shared/schema";
+import { insertMessageSchema, insertProjectSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express, httpServer: Server) {

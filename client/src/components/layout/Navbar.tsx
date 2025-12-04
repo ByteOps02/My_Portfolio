@@ -39,10 +39,8 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Magnetic strength={20}>
-          <Link href="/">
-            <a className="text-2xl font-heading font-bold tracking-tighter hover:text-primary transition-colors">
-              Portfolio<span className="text-accent">.</span>
-            </a>
+          <Link href="/" className="text-2xl font-heading font-bold tracking-tighter hover:text-primary transition-colors">
+            Portfolio<span className="text-accent">.</span>
           </Link>
         </Magnetic>
 
@@ -50,15 +48,14 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Magnetic key={link.name} strength={15}>
-              <Link href={link.href}>
-                <a
-                  className={`text-sm font-medium transition-colors hover:text-primary relative group ${
-                    location === link.href ? 'text-primary font-semibold' : 'text-muted-foreground'
-                  }`}
-                >
-                  {link.name}
-                  <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full ${location === link.href ? 'w-full' : ''}`} />
-                </a>
+              <Link 
+                href={link.href}
+                className={`text-sm font-medium transition-colors hover:text-primary relative group ${
+                  location === link.href ? 'text-primary font-semibold' : 'text-muted-foreground'
+                }`}
+              >
+                {link.name}
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full ${location === link.href ? 'w-full' : ''}`} />
               </Link>
             </Magnetic>
           ))}
@@ -99,10 +96,12 @@ export default function Navbar() {
             <SheetContent>
               <nav className="flex flex-col gap-6 mt-12">
                 {navLinks.map((link) => (
-                  <Link key={link.name} href={link.href}>
-                    <a className={`text-lg font-medium ${location === link.href ? 'text-primary' : 'text-foreground'}`}>
-                      {link.name}
-                    </a>
+                  <Link 
+                    key={link.name} 
+                    href={link.href}
+                    className={`text-lg font-medium ${location === link.href ? 'text-primary' : 'text-foreground'}`}
+                  >
+                    {link.name}
                   </Link>
                 ))}
               </nav>

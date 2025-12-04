@@ -23,10 +23,8 @@ export default function Footer() {
 
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12 mb-16 border-t border-white/5 pt-16">
           <div className="col-span-2 md:col-span-4">
-            <Link href="/">
-              <a className="text-3xl font-heading font-bold tracking-tighter mb-6 block hover:opacity-80 transition-opacity">
-                Portfolio<span className="text-primary">.</span>
-              </a>
+            <Link href="/" className="text-3xl font-heading font-bold tracking-tighter mb-6 block hover:opacity-80 transition-opacity">
+              Portfolio<span className="text-primary">.</span>
             </Link>
             <p className="text-muted-foreground leading-relaxed max-w-sm mb-6">
               Crafting digital experiences with a focus on motion, aesthetics, and performance. Based in San Francisco, working globally.
@@ -52,10 +50,11 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               {['Projects', 'About', 'Blog', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase()}`}>
-                    <a className="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block duration-200">
-                      {item}
-                    </a>
+                  <Link 
+                    href={`/${item.toLowerCase()}`}
+                    className="text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block duration-200"
+                  >
+                    {item}
                   </Link>
                 </li>
               ))}
