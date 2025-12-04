@@ -1,29 +1,6 @@
 import { motion } from "framer-motion";
-import { Code2, Palette, Rocket, Smartphone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const services = [
-  {
-    title: "Frontend Architecture",
-    description: "Building scalable, performant, and maintainable user interfaces using modern React patterns and state management.",
-    icon: Code2,
-  },
-  {
-    title: "DevOps",
-    description: "Implementing robust CI/CD pipelines, automation, and infrastructure as code to ensure seamless deployment and operations.",
-    icon: Palette,
-  },
-  {
-    title: "Performance Optimization",
-    description: "Auditing and improving application speed, Core Web Vitals, and SEO to ensure lightning-fast experiences.",
-    icon: Rocket,
-  },
-  {
-    title: "Web Development",
-    description: "Building dynamic and responsive web applications with modern frameworks, ensuring a seamless user experience across all devices.",
-    icon: Smartphone,
-  },
-];
+import { services } from "@/lib/data";
 
 export default function Services() {
   return (

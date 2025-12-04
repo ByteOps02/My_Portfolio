@@ -25,7 +25,7 @@ export default function Contact() {
               </div>
               <h3 className="font-bold text-xl mb-2">Email Me</h3>
               <p className="text-muted-foreground mb-2">I'll get back to you within 24 hours.</p>
-              <a href="mailto:hello@example.com" className="text-primary hover:underline font-medium">hello@example.com</a>
+              <a href="mailto:hello@example.com" className="text-primary hover:underline font-medium">krishnarammhd@gmail.com</a>
             </div>
 
             <div className="p-6 rounded-2xl bg-card border border-border">
@@ -33,8 +33,8 @@ export default function Contact() {
                 <Phone className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-xl mb-2">Call Me</h3>
-              <p className="text-muted-foreground mb-2">Available Mon-Fri, 9am - 5pm EST.</p>
-              <a href="tel:+1234567890" className="text-primary hover:underline font-medium">+1 (555) 123-4567</a>
+              <p className="text-muted-foreground mb-2">Available Mon-Fri, 9am - 5pm IST.</p>
+              <a href="tel:+1234567890" className="text-primary hover:underline font-medium">+91 92440 88448</a>
             </div>
 
             <div className="p-6 rounded-2xl bg-card border border-border">
@@ -42,7 +42,7 @@ export default function Contact() {
                 <MapPin className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-xl mb-2">Location</h3>
-              <p className="text-muted-foreground">San Francisco, CA<br/>Remote Available</p>
+              <p className="text-muted-foreground">Nagpur,Maharashtra<br/>Remote Available</p>
             </div>
           </div>
 

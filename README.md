@@ -7,7 +7,6 @@ A premium, responsive, and interactive portfolio web application built with the 
 - **Premium UI/UX:** Glassmorphism design, parallax effects, and 3D tilt interactions using Framer Motion and Tailwind CSS.
 - **Project Management:** Filterable project listing with detailed case study pages.
 - **Admin Dashboard:** Protected admin area to manage projects and content (Simulated in this mockup).
-- **Blog:** Markdown-based blog post rendering.
 - **Contact Form:** Functional contact form with validation.
 - **Dark/Light Mode:** Fully accessible theme toggle.
 - **Responsive:** Optimized for all device sizes.

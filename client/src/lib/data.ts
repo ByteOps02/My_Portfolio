@@ -27,14 +27,6 @@ export interface Experience {
   description: string;
 }
 
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  content: string;
-  avatar: string;
-}
-
 export const projects: Project[] = [
   {
     id: 'expense-tracker',
@@ -85,55 +77,17 @@ export const skills: Skill[] = [
   { id: '2', name: 'TypeScript', level: 92 },
   { id: '3', name: 'Tailwind CSS', level: 98 },
   { id: '4', name: 'Node.js', level: 85 },
-  { id: '5', name: 'UI/UX Design', level: 88 },
+  { id: '5', name: 'MongoDB', level: 88 },
   { id: '6', name: 'Framer Motion', level: 90 },
 ];
 
 export const experiences: Experience[] = [
   {
     id: '1',
-    year: '2023 - Present',
-    role: 'Senior Frontend Developer',
-    company: 'Tech Innovations Inc.',
-    description: 'Leading frontend development for enterprise applications, mentoring junior developers, and implementing best practices.',
-  },
-  {
-    id: '2',
-    year: '2021 - 2023',
-    role: 'Full Stack Developer',
-    company: 'Digital Solutions Agency',
-    description: 'Built scalable web applications for clients across fintech, healthcare, and e-commerce industries.',
-  },
-  {
-    id: '3',
-    year: '2019 - 2021',
-    role: 'Frontend Developer',
-    company: 'StartUp Labs',
-    description: 'Developed responsive user interfaces and implemented modern design systems for early-stage startups.',
-  },
-];
-
-export const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Sarah Johnson',
-    role: 'Product Manager at TechFlow',
-    content: 'Exceptional attention to detail and a deep understanding of user experience. The expense tracker transformed how our team manages finances.',
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    id: '2',
-    name: 'Michael Chen',
-    role: 'CTO at SecureEntry',
-    content: 'The visitor management system exceeded our expectations. Professional, secure, and beautifully designed. Highly recommended!',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-  },
-  {
-    id: '3',
-    name: 'Emily Williams',
-    role: 'Marketing Director at Snufi Pharma',
-    content: 'Our new website perfectly captures our brand identity. The design is modern, accessible, and has significantly improved our online presence.',
-    avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+    year: 'Present',
+    role: 'Actively seeking opportunities',
+    company: 'Web Development & SDE Roles (Internship/Job)',
+    description: 'Passionate fresher actively seeking challenging roles in Web Development and Software Development Engineering. Eager to contribute to innovative projects and grow within a dynamic team environment.',
   },
 ];
 
@@ -144,3 +98,29 @@ export function getProject(id: string): Project | undefined {
 export function getFeaturedProjects(): Project[] {
   return projects.filter(p => p.featured);
 }
+
+import { Code2, Palette, Rocket, Smartphone } from "lucide-react";
+
+export const services = [
+  {
+    title: "Frontend Architecture",
+    description: "Building scalable, performant, and maintainable user interfaces using modern React patterns and state management.",
+    icon: Code2,
+  },
+  {
+    title: "DevOps",
+    description: "Implementing robust CI/CD pipelines, automation, and infrastructure as code to ensure seamless deployment and operations.",
+    icon: Palette,
+  },
+  {
+    title: "Performance Optimization",
+    description: "Auditing and improving application speed, Core Web Vitals, and SEO to ensure lightning-fast experiences.",
+    icon: Rocket,
+  },
+  {
+    title: "Web Development",
+    description: "Building dynamic and responsive web applications with modern frameworks, ensuring a seamless user experience across all devices.",
+    icon: Smartphone,
+  },
+];
+

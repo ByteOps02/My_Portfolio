@@ -48,7 +48,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2 md:col-start-7">
             <h4 className="font-bold mb-6 text-foreground/90">Explore</h4>
             <ul className="space-y-4 text-sm">
-              {['Projects', 'About', 'Blog', 'Contact'].map((item) => (
+              {['Projects', 'About', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link 
                     href={`/${item.toLowerCase()}`}
@@ -80,22 +80,14 @@ export default function Footer() {
             © {new Date().getFullYear()} Dev. All rights reserved.
           </p>
           
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-secondary/30 px-4 py-2 rounded-full">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-red-500 fill-red-500 animate-pulse" />
-              <span>in San Francisco</span>
-            </div>
-            
-            <Button 
-              size="icon" 
-              variant="outline" 
-              className="rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-              onClick={scrollToTop}
-            >
-              <ArrowUp className="h-4 w-4" />
-            </Button>
-          </div>
+          <Button 
+            size="icon" 
+            variant="outline" 
+            className="rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+            onClick={scrollToTop}
+          >
+            <ArrowUp className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </footer>

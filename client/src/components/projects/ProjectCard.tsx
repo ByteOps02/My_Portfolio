@@ -40,6 +40,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           <img 
             src={project.image} 
             alt={project.title} 
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

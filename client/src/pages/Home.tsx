@@ -7,7 +7,6 @@ import Services from '@/components/home/Services';
 import Experience from '@/components/home/Experience';
 import ProjectCard from '@/components/projects/ProjectCard';
 import ScrollVelocity from '@/components/home/ScrollVelocity';
-import Testimonials from '@/components/home/Testimonials';
 import { getFeaturedProjects } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -74,8 +73,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      <Testimonials />
 
       <Footer />
     </div>

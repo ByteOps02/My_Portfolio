@@ -10,7 +10,7 @@ export default function TechStack() {
     <section className="py-8 overflow-hidden bg-background border-y border-border/50">
       <div className="container mx-auto px-6 mb-8 text-center">
         <p className="text-sm text-muted-foreground font-medium uppercase tracking-widest">
-          Powering Next-Gen Applications
+          Crafting Applications While Continuously Learning
         </p>
       </div>
       

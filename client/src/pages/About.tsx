@@ -1,9 +1,10 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
-import { Download, Github, Linkedin, Twitter, Mail, Code2, Palette, Zap } from 'lucide-react';
+import { Download, Github, Linkedin, Twitter, Mail } from 'lucide-react';
 import { skills, experiences } from '@/lib/data';
 import { motion } from 'framer-motion';
+import Services from '@/components/home/Services';
 
 export default function About() {
   const CircularProgress = ({ value, label }: { value: number, label: string }) => {
@@ -53,11 +54,7 @@ export default function About() {
     );
   };
 
-  const services = [
-    { icon: Code2, title: 'Web Development', desc: 'Building fast, responsive web applications with modern frameworks' },
-    { icon: Palette, title: 'UI/UX Design', desc: 'Creating intuitive and beautiful user interfaces' },
-    { icon: Zap, title: 'Performance', desc: 'Optimizing applications for speed and efficiency' },
-  ];
+
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
@@ -73,7 +70,7 @@ export default function About() {
             className="relative order-2 lg:order-1"
           >
             <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-border/50 shadow-2xl relative z-10">
-              <img src="/images/professional_developer_avatar.png" alt="Developer Portrait" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+              <img src="/images/professional_developer_avatar.png" alt="Developer Portrait" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="absolute -z-10 top-8 -left-8 w-full h-full border-2 border-primary/30 rounded-3xl" />
             <div className="absolute -z-20 -bottom-10 -right-10 w-72 h-72 bg-primary/20 blur-[120px] rounded-full" />
@@ -106,6 +103,7 @@ export default function About() {
               <Button size="lg" className="rounded-full h-14 px-8 shadow-lg shadow-primary/20">
                 Download Resume <Download className="ml-2 h-5 w-5" />
               </Button>
+
               <a href="https://github.com" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="rounded-full h-14 w-14 p-0">
                   <Github className="h-5 w-5" />
@@ -149,49 +147,23 @@ export default function About() {
                 <CircularProgress value={skill.level} label={skill.name} />
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        <section className="mb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="text-primary font-medium mb-4 block">What I Do</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Services</h2>
-          </motion.div>
+                    </div>
+                  </section>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-3xl bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground">{service.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-20">
+                  <section className="mb-32">
+                    <Services />
+                  </section>
+          
+                  <section className="mb-20">
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="text-primary font-medium mb-4 block">Journey</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Experience</h2>
+            <span className="text-primary font-medium mb-4 block">Future</span>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Career Outlook</h2>
           </motion.div>
           
           <div className="max-w-3xl mx-auto">

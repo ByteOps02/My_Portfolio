@@ -24,7 +24,6 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -59,6 +58,14 @@ export default function Navbar() {
               </Link>
             </Magnetic>
           ))}
+          
+          <Magnetic strength={15}>
+            <Link href="/contact">
+              <Button size="sm" variant="default" className="rounded-full px-4 shadow-lg shadow-primary/20">
+                Hire me
+              </Button>
+            </Link>
+          </Magnetic>
           
           <Magnetic strength={20}>
             <Button
@@ -104,6 +111,11 @@ export default function Navbar() {
                     {link.name}
                   </Link>
                 ))}
+                <Link href="/contact">
+                  <Button variant="default" className="w-full rounded-full mt-4">
+                    Hire me
+                  </Button>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
