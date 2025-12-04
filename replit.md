@@ -93,3 +93,9 @@ The `vite.config.ts` is properly configured for Replit:
 - Static deployment configuration for production
 - TypeScript strict mode enabled for type safety
 - Path aliases configured (`@/` maps to `client/src/`)
+
+## Performance Optimizations (December 4, 2025)
+- **Direct Page Imports**: Removed React.lazy() for instant navigation between pages
+- **Optimized CustomCursor**: Uses requestAnimationFrame with refs instead of framer-motion springs, disabled on touch devices
+- **Streamlined Navbar**: Removed Magnetic wrappers, added RAF-throttled scroll listener, memoized component
+- **Reduced Animation Overhead**: Simplified transitions for faster perceived performance
