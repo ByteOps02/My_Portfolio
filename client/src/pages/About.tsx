@@ -1,172 +1,174 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
-import { Download, Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Download, Github, Linkedin, Twitter, Heart, Zap, Users, Target } from 'lucide-react';
 import { skills, experiences } from '@/lib/data';
 import { motion } from 'framer-motion';
 import Services from '@/components/home/Services';
 
+function SkillBar({ name, level }: { name: string; level: number }) {
+  return (
+    <motion.div 
+      className="group"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex justify-between items-center mb-2">
+        <span className="font-medium text-sm group-hover:text-primary transition-colors">{name}</span>
+        <span className="text-xs text-muted-foreground">{level}%</span>
+      </div>
+      <div className="h-2 bg-secondary rounded-full overflow-hidden">
+        <motion.div 
+          className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
+          initial={{ width: 0 }}
+          whileInView={{ width: `${level}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+const values = [
+  { icon: Heart, title: "Passion-Driven", description: "I genuinely love what I do. Every project is an opportunity to create something meaningful." },
+  { icon: Zap, title: "Performance First", description: "Fast, efficient code isn't optional—it's the foundation of great user experience." },
+  { icon: Users, title: "Collaboration", description: "The best solutions come from open communication and teamwork." },
+  { icon: Target, title: "Attention to Detail", description: "The little things matter. Pixel-perfect designs and clean code are my standards." },
+];
+
 export default function About() {
-  const CircularProgress = ({ value, label }: { value: number, label: string }) => {
-    const circumference = 2 * Math.PI * 40;
-    const strokeDashoffset = circumference - (value / 100) * circumference;
-
-    return (
-      <motion.div 
-        className="flex flex-col items-center gap-4 group"
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="relative w-28 h-28 md:w-32 md:h-32">
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="40"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="6"
-              className="text-muted/20"
-            />
-            <motion.circle
-              cx="50"
-              cy="50"
-              r="40"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="6"
-              strokeLinecap="round"
-              className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.4)]"
-              initial={{ strokeDasharray: circumference, strokeDashoffset: circumference }}
-              whileInView={{ strokeDashoffset }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              viewport={{ once: true }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
-            {value}%
-          </div>
-        </div>
-        <span className="font-medium text-sm md:text-base text-center group-hover:text-primary transition-colors">{label}</span>
-      </motion.div>
-    );
-  };
-
-
-
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       
-      <main className="pt-24 container mx-auto px-6">
-        
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+      <main className="pt-28 md:pt-32 container mx-auto px-6">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20 md:mb-28">
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-1"
           >
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-border/50 shadow-2xl relative z-10">
-              <img src="/images/professional_developer_avatar.png" alt="Developer Portrait" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+            <div className="aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-border shadow-xl relative z-10">
+              <img src="/images/professional_developer_avatar.png" alt="Developer Portrait" loading="lazy" className="w-full h-full object-cover" />
             </div>
-            <div className="absolute -z-10 top-8 -left-8 w-full h-full border-2 border-primary/30 rounded-3xl" />
-            <div className="absolute -z-20 -bottom-10 -right-10 w-72 h-72 bg-primary/20 blur-[120px] rounded-full" />
-            <div className="absolute -z-20 top-0 left-0 w-48 h-48 bg-blue-500/10 blur-[80px] rounded-full" />
+            <div className="absolute -z-10 top-4 -left-4 w-full h-full border-2 border-primary/20 rounded-2xl hidden lg:block" />
           </motion.div>
           
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="order-1 lg:order-2"
           >
-            <span className="text-primary font-medium mb-4 block">About Me</span>
-            <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 leading-tight">
-              More than just <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500">Code.</span>
+            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">About Me</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">
+              More than just <span className="text-primary">Code.</span>
             </h1>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate Full Stack Developer with expertise in building modern web applications. 
-                With a strong foundation in React, TypeScript, and Node.js, I create solutions that are both 
-                functional and beautiful.
+                I'm a passionate Full Stack Developer with <strong className="text-foreground">3+ years of experience</strong> building modern web applications. 
+                With a strong foundation in React, TypeScript, and Node.js, I create solutions that are both functional and beautiful.
               </p>
               <p>
-                My philosophy is simple: software should not only function perfectly but also provide an 
-                exceptional user experience. I specialize in building accessible, performant, and visually 
-                stunning applications.
+                My philosophy is simple: software should not only function perfectly but also provide an exceptional user experience. 
+                I specialize in building <strong className="text-foreground">accessible, performant, and visually stunning</strong> applications.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4 mt-10">
-              <Button size="lg" className="rounded-full h-14 px-8 shadow-lg shadow-primary/20">
-                Download Resume <Download className="ml-2 h-5 w-5" />
+            <div className="flex flex-wrap gap-3 mt-8">
+              <Button size="lg" className="rounded-full h-12 px-6 shadow-lg shadow-primary/20">
+                <Download className="mr-2 h-4 w-4" /> Download Resume
               </Button>
-
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="rounded-full h-14 w-14 p-0">
-                  <Github className="h-5 w-5" />
-                </Button>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="rounded-full h-14 w-14 p-0">
-                  <Linkedin className="h-5 w-5" />
-                </Button>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="rounded-full h-14 w-14 p-0">
-                  <Twitter className="h-5 w-5" />
-                </Button>
-              </a>
+              <div className="flex gap-2">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0">
+                    <Github className="h-5 w-5" />
+                  </Button>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0">
+                    <Linkedin className="h-5 w-5" />
+                  </Button>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0">
+                    <Twitter className="h-5 w-5" />
+                  </Button>
+                </a>
+              </div>
             </div>
           </motion.div>
         </section>
 
-        <section className="mb-32">
+        <section className="mb-20 md:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <span className="text-primary font-medium mb-4 block">Expertise</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Technical Skills</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">The technologies and tools I use to bring ideas to life.</p>
+            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">What Drives Me</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">My Values</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">The principles that guide my work and collaboration.</p>
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
-            {skills.map((skill, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
               <motion.div
-                key={skill.id}
+                key={value.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                className="p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors"
               >
-                <CircularProgress value={skill.level} label={skill.name} />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <value.icon className="h-6 w-6" />
+                </div>
+                <h3 className="font-bold mb-2">{value.title}</h3>
+                <p className="text-sm text-muted-foreground">{value.description}</p>
               </motion.div>
             ))}
-                    </div>
-                  </section>
-          
-                  <section className="mb-32">
-                    <Services />
-                  </section>
-          
-                  <section className="mb-20">
-          
+          </div>
+        </section>
+
+        <section className="mb-20 md:mb-28">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <span className="text-primary font-medium mb-4 block">Future</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Career Outlook</h2>
+            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">Expertise</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">Technical Skills</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">The technologies and tools I use to bring ideas to life.</p>
           </motion.div>
           
-          <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 max-w-4xl mx-auto">
+            {skills.map((skill) => (
+              <SkillBar key={skill.id} name={skill.name} level={skill.level} />
+            ))}
+          </div>
+        </section>
+        
+        <section className="mb-20 md:mb-28">
+          <Services />
+        </section>
+        
+        <section className="mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">Journey</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">Career Path</h2>
+          </motion.div>
+          
+          <div className="max-w-2xl mx-auto">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -174,18 +176,17 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative pl-8 pb-12 last:pb-0 border-l-2 border-border hover:border-primary transition-colors"
+                className="relative pl-8 pb-10 last:pb-0 border-l-2 border-border hover:border-primary transition-colors"
               >
-                <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-primary -translate-x-[9px] shadow-lg shadow-primary/30" />
-                <span className="text-sm text-primary font-medium">{exp.year}</span>
-                <h3 className="text-xl font-bold mt-2">{exp.role}</h3>
-                <p className="text-muted-foreground font-medium">{exp.company}</p>
-                <p className="text-muted-foreground mt-2">{exp.description}</p>
+                <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-primary -translate-x-[7px] shadow-lg shadow-primary/30" />
+                <span className="text-xs text-primary font-medium uppercase tracking-wider">{exp.year}</span>
+                <h3 className="text-lg font-bold mt-1">{exp.role}</h3>
+                <p className="text-muted-foreground text-sm font-medium">{exp.company}</p>
+                <p className="text-muted-foreground text-sm mt-2">{exp.description}</p>
               </motion.div>
             ))}
           </div>
         </section>
-
       </main>
       
       <Footer />

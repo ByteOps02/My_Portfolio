@@ -1,97 +1,106 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { memo } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
-import Magnetic from '@/components/ui/Magnetic';
 import TextReveal from '@/components/ui/TextReveal';
-
 import TypewriterLoop from '@/components/ui/TypewriterLoop';
 
-export default function Hero() {
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
+function Hero() {
   return (
-    <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-background">
-      {/* Background Parallax - Enhanced with grid */}
-      <motion.div 
-        style={{ y: y1, opacity: 0.6 }}
-        className="absolute inset-0 z-0"
-      >
+    <section className="relative h-screen flex flex-col overflow-hidden bg-background">
+      <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        
         <img 
           src="/images/abstract_dark_premium_fluid_background_for_hero_section.png"
-          alt="Abstract Background" 
-          loading="lazy"
-          className="w-full h-full object-cover opacity-60 mix-blend-screen dark:mix-blend-lighten"
+          alt="" 
+          loading="eager"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
-      </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
+      </div>
 
-      {/* Content */}
-      <div className="container relative z-10 px-6 pt-20 text-center">
+      <div className="container relative z-10 px-6 text-center flex-1 flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.5 }}
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 border border-primary/20 backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 border border-primary/20 backdrop-blur-sm">
+            <Sparkles className="h-4 w-4" />
             Open to New Opportunities
           </span>
         </motion.div>
 
-        <div className="mb-6 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60 leading-[1.1]">
-            <TextReveal text="Building Digital" className="justify-center" delay={0.4} />
-            <TextReveal text="Experiences." className="justify-center text-primary" delay={0.6} />
+        <div className="mb-8 flex flex-col items-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1]">
+            <TextReveal text="Building Digital" className="justify-center" delay={0.2} />
+            <TextReveal text="Experiences." className="justify-center text-primary" delay={0.4} />
           </h1>
         </div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          I craft <TypewriterLoop words={["premium web applications", "scalable cloud systems", "interactive digital products"]} className="font-semibold text-foreground" /> with modern technologies. 
+          I craft <TypewriterLoop words={["premium web apps", "scalable systems", "digital products"]} className="font-semibold text-foreground" /> with modern technologies. 
           Focusing on motion, accessibility, and user-centric design.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Magnetic strength={30}>
-            <Link href="/projects">
-              <Button size="lg" className="rounded-full px-8 text-lg h-14 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-300">
-                View Projects <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </Magnetic>
+          <Link href="/projects">
+            <Button size="lg" className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-200 group">
+              View Projects <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
           
-          <Magnetic strength={30}>
-            <Link href="/contact">
-              <Button variant="outline" size="lg" className="rounded-full px-8 text-lg h-14 backdrop-blur-sm bg-background/20 border-foreground/10 hover:bg-background/40">
-                Contact Me
-              </Button>
-            </Link>
-          </Magnetic>
+          <Link href="/contact">
+            <Button variant="outline" size="lg" className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 backdrop-blur-sm bg-background/30 border-border hover:bg-background/50">
+              Contact Me
+            </Button>
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.4 }}
+          className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground"
+        >
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <span>Available for freelance</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-primary"></div>
+            <span>3+ Years Experience</span>
+          </div>
+          <div className="flex items-center gap-2 hidden sm:flex">
+            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+            <span>Remote Worldwide</span>
+          </div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        style={{ opacity }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted-foreground"
+      <motion.button
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 8, 0] }}
+        transition={{ opacity: { delay: 1 }, y: { repeat: Infinity, duration: 2, ease: "easeInOut" } }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-muted-foreground/60 hover:text-primary transition-colors cursor-pointer p-2"
+        aria-label="Scroll down to see more"
       >
-        <ChevronDown className="h-8 w-8" />
-      </motion.div>
+        <ChevronDown className="h-6 w-6" />
+      </motion.button>
     </section>
   );
 }
+
+export default memo(Hero);

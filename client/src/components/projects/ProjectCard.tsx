@@ -1,85 +1,74 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { memo } from 'react';
 import { Link } from 'wouter';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Calendar, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { type Project } from '@/lib/data';
 
-export default function ProjectCard({ project }: { project: Project }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
-  const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
-
-  function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    const { left, top, width, height } = currentTarget.getBoundingClientRect();
-    x.set((clientX - left) / width - 0.5);
-    y.set((clientY - top) / height - 0.5);
-  }
-
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
+function ProjectCard({ project }: { project: Project }) {
+  const formattedDate = new Date(project.date).toLocaleDateString('en-US', { 
+    month: 'short', 
+    year: 'numeric' 
+  });
 
   return (
     <Link href={`/project/${project.id}`}>
-      <motion.div
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
-        onMouseMove={onMouseMove}
-        onMouseLeave={() => {
-          x.set(0);
-          y.set(0);
-        }}
-        className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500"
-      >
-        <div style={{ transform: "translateZ(50px)" }} className="relative aspect-[16/10] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+      <article className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-md hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300">
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
           <img 
             src={project.image} 
             alt={project.title} 
             loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-              <ArrowUpRight className="h-5 w-5 text-black" />
+          <div className="absolute top-4 left-4 z-20">
+            <Badge className="bg-background/90 text-foreground backdrop-blur-sm border-0 shadow-sm">
+              {project.category}
+            </Badge>
+          </div>
+          <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg">
+              <ArrowUpRight className="h-5 w-5 text-primary-foreground" />
+            </div>
+          </div>
+          <div className="absolute bottom-4 left-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+            <div className="flex items-center gap-2 text-white/90 text-sm">
+              <ExternalLink className="h-4 w-4" />
+              <span>View Case Study</span>
             </div>
           </div>
         </div>
 
-        <div style={{ transform: "translateZ(30px)" }} className="p-6 bg-card relative z-20">
-          <div className="flex justify-between items-start mb-3">
-            <div>
-              <Badge variant="outline" className="mb-2 text-primary border-primary/30 bg-primary/5">
-                {project.category}
-              </Badge>
-              <h3 className="text-2xl font-bold font-heading group-hover:text-primary transition-colors duration-300">
-                {project.title}
-              </h3>
-            </div>
+        <div className="p-5 sm:p-6">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+            <Calendar className="h-3.5 w-3.5" />
+            <span>{formattedDate}</span>
           </div>
           
-          <p className="text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
+          <h3 className="text-xl sm:text-2xl font-bold font-heading group-hover:text-primary transition-colors duration-200 mb-2">
+            {project.title}
+          </h3>
+          
+          <p className="text-muted-foreground text-sm sm:text-base mb-4 line-clamp-2 leading-relaxed">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 3).map((tech) => (
-              <Badge key={tech} variant="secondary" className="rounded-md font-normal">
+          <div className="flex flex-wrap gap-1.5">
+            {project.technologies.slice(0, 4).map((tech) => (
+              <Badge key={tech} variant="secondary" className="rounded-full text-xs font-normal px-2.5 py-0.5">
                 {tech}
               </Badge>
             ))}
-            {project.technologies.length > 3 && (
-              <Badge variant="secondary" className="rounded-md font-normal">
-                +{project.technologies.length - 3}
+            {project.technologies.length > 4 && (
+              <Badge variant="outline" className="rounded-full text-xs font-normal px-2.5 py-0.5">
+                +{project.technologies.length - 4}
               </Badge>
             )}
           </div>
         </div>
-      </motion.div>
+      </article>
     </Link>
   );
 }
+
+export default memo(ProjectCard);
