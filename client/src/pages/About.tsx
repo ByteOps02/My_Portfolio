@@ -51,7 +51,7 @@ export default function About() {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       
-      <main className="pt-28 md:pt-32 container mx-auto px-6">
+      <main className="pt-24 md:pt-32 container mx-auto px-6">
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20 md:mb-28">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

@@ -82,7 +82,7 @@ export default function ProjectDetail() {
                 </Badge>
               )}
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 text-white tracking-tight drop-shadow-xl">
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 text-white tracking-tight drop-shadow-xl">
               {project.title}
             </h1>
             <div className="flex flex-wrap gap-4">

@@ -19,7 +19,7 @@ export default function TechStack() {
           {technologies.map((tech, index) => (
             <span 
               key={index} 
-              className="mx-8 text-4xl md:text-6xl font-heading font-bold text-muted-foreground/20 hover:text-primary/50 transition-colors cursor-default"
+              className="mx-8 text-3xl md:text-6xl font-heading font-bold text-muted-foreground/20 hover:text-primary/50 transition-colors cursor-default"
             >
               {tech}
             </span>
@@ -29,7 +29,7 @@ export default function TechStack() {
           {technologies.map((tech, index) => (
             <span 
               key={`duplicate-${index}`} 
-              className="mx-8 text-4xl md:text-6xl font-heading font-bold text-muted-foreground/20 hover:text-primary/50 transition-colors cursor-default"
+              className="mx-8 text-3xl md:text-6xl font-heading font-bold text-muted-foreground/20 hover:text-primary/50 transition-colors cursor-default"
             >
               {tech}
             </span>

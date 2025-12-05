@@ -37,7 +37,7 @@ export default function Projects() {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main className="pt-28 md:pt-32 pb-16 md:pb-20 container mx-auto px-6">
+      <main className="pt-24 md:pt-32 pb-16 md:pb-20 container mx-auto px-6">
         <div className="mb-12 md:mb-16 text-center md:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

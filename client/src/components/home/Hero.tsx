@@ -8,7 +8,7 @@ import TypewriterLoop from '@/components/ui/TypewriterLoop';
 
 function Hero() {
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden bg-background">
+    <section className="relative min-h-[100dvh] flex flex-col overflow-hidden bg-background">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div
@@ -28,7 +28,7 @@ function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 px-6 text-center flex-1 flex flex-col items-center justify-center">
+      <div className="container relative z-10 px-6 text-center flex-1 flex flex-col items-center justify-center py-20">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,8 +42,8 @@ function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <div className="mb-8 flex flex-col items-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1]">
+        <div className="mb-8 flex flex-col items-center w-full">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] w-full flex flex-col items-center">
             <TextReveal text="Building Digital" className="justify-center" delay={0.2} />
             <TextReveal text="Experiences." className="justify-center text-primary" delay={0.4} />
           </h1>
@@ -109,7 +109,7 @@ function Hero() {
             <span>0 Years Experience (Fresher)</span>
           </div>
 
-          <div className="flex items-center gap-2 hidden sm:flex">
+          <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-blue-500"></div>
             <span>Remote Worldwide as well as OnSite</span>
           </div>

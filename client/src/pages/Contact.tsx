@@ -39,7 +39,7 @@ export default function Contact() {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <main className="pt-28 md:pt-32 pb-16 container mx-auto px-6">
+      <main className="pt-24 md:pt-32 pb-16 container mx-auto px-6">
         <motion.div 
           className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
