@@ -42,8 +42,7 @@ export default function ContactForm() {
     
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    console.log("Form submitted:", values);
-    setIsSubmitting(false);
+        setIsSubmitting(false);
     setIsSuccess(true);
     form.reset();
     
@@ -78,11 +77,12 @@ export default function ContactForm() {
               control={form.control}
               name="name"
               render={({ field }) => (
+                
                 <FormItem>
                   <FormLabel className="text-foreground">Name</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="John Doe" 
+                      placeholder="Enter Full Name" 
                       {...field} 
                       className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl" 
                     />
@@ -99,7 +99,7 @@ export default function ContactForm() {
                   <FormLabel className="text-foreground">Email</FormLabel>
                   <FormControl>
                     <Input 
-                      placeholder="john@example.com" 
+                      placeholder="email@example.com" 
                       {...field} 
                       className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl" 
                     />

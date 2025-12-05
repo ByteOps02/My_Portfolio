@@ -9,18 +9,27 @@ import TypewriterLoop from '@/components/ui/TypewriterLoop';
 function Hero() {
   return (
     <section className="relative h-screen flex flex-col overflow-hidden bg-background">
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <img 
+        <div
+          className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)]
+          bg-[size:24px_24px]
+          [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+        />
+
+        <img
           src="/images/abstract_dark_premium_fluid_background_for_hero_section.png"
-          alt="" 
+          alt=""
           loading="eager"
           className="w-full h-full object-cover opacity-50"
         />
+
         <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
       </div>
 
+      {/* Content */}
       <div className="container relative z-10 px-6 text-center flex-1 flex flex-col items-center justify-center">
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,6 +41,7 @@ function Hero() {
           </span>
         </motion.div>
 
+        {/* Headline */}
         <div className="mb-8 flex flex-col items-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1]">
             <TextReveal text="Building Digital" className="justify-center" delay={0.2} />
@@ -39,16 +49,22 @@ function Hero() {
           </h1>
         </div>
 
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          I craft <TypewriterLoop words={["premium web apps", "scalable systems", "digital products"]} className="font-semibold text-foreground" /> with modern technologies. 
-          Focusing on motion, accessibility, and user-centric design.
+          I craft{' '}
+          <TypewriterLoop
+            words={['premium web apps', 'scalable systems', 'digital products']}
+            className="font-semibold text-foreground"
+          />{' '}
+          with modern technologies. Focusing on motion, accessibility, and user-centric design.
         </motion.p>
 
+        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,18 +72,27 @@ function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <Link href="/projects">
-            <Button size="lg" className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-200 group">
-              View Projects <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <Button
+              size="lg"
+              className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-200 group"
+            >
+              View Projects
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
-          
+
           <Link href="/contact">
-            <Button variant="outline" size="lg" className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 backdrop-blur-sm bg-background/30 border-border hover:bg-background/50">
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 backdrop-blur-sm bg-background/30 border-border hover:bg-background/50"
+            >
               Contact Me
             </Button>
           </Link>
         </motion.div>
 
+        {/* Metadata Pills */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -78,22 +103,28 @@ function Hero() {
             <div className="w-2 h-2 rounded-full bg-green-500"></div>
             <span>Available for freelance</span>
           </div>
+
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-primary"></div>
-            <span>3+ Years Experience</span>
+            <span>0 Years Experience (Fresher)</span>
           </div>
+
           <div className="flex items-center gap-2 hidden sm:flex">
             <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-            <span>Remote Worldwide</span>
+            <span>Remote Worldwide as well as OnSite</span>
           </div>
         </motion.div>
       </div>
 
+      {/* Scroll-down arrow */}
       <motion.button
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 8, 0] }}
-        transition={{ opacity: { delay: 1 }, y: { repeat: Infinity, duration: 2, ease: "easeInOut" } }}
+        transition={{
+          opacity: { delay: 1 },
+          y: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
+        }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-muted-foreground/60 hover:text-primary transition-colors cursor-pointer p-2"
         aria-label="Scroll down to see more"
       >

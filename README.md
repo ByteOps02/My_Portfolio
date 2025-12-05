@@ -1,77 +1,101 @@
-# Modern MERN Portfolio
+# Modern Developer Portfolio
 
-A premium, responsive, and interactive portfolio web application built with the MERN stack (MongoDB, Express, React, Node.js).
+A premium, high-performance portfolio website designed to showcase software development projects and technical skills. Built with modern web technologies, focusing on aesthetics, accessibility, and performance.
 
-## Features
+## 🚀 Features
 
-- **Premium UI/UX:** Glassmorphism design, parallax effects, and 3D tilt interactions using Framer Motion and Tailwind CSS.
-- **Project Management:** Filterable project listing with detailed case study pages.
-- **Admin Dashboard:** Protected admin area to manage projects and content (Simulated in this mockup).
-- **Contact Form:** Functional contact form with validation.
-- **Dark/Light Mode:** Fully accessible theme toggle.
-- **Responsive:** Optimized for all device sizes.
+- **Premium UI/UX:** Immersive design with glassmorphism, parallax scrolling, and fluid animations using **Framer Motion**.
+- **Responsive Design:** Fully optimized for all devices, from mobile to extra-large desktops.
+- **Interactive Components:**
+    -   Dynamic "Tech Stack" grid with hover effects.
+    -   Project showcase with detailed views.
+    -   Smooth page transitions and gesture-based interactions.
+- **Theme System:** Built-in Dark/Light mode support (defaulting to system preference).
+- **Performance:** Lightning-fast load times powered by **Vite** and **React 19**.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- **Client:** React (Vite), Tailwind CSS, Framer Motion, Wouter (Routing), React Query, Shadcn/UI.
-- **Server (Planned):** Node.js, Express.
-- **Database (Planned):** MongoDB Atlas.
+This project is built using the following technologies:
 
-## Getting Started
+-   **Framework:** [React 19](https://react.dev/)
+-   **Build Tool:** [Vite](https://vitejs.dev/)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **Routing:** [Wouter](https://github.com/molefrog/wouter)
+-   **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix UI primitives)
+-   **Icons:** [Lucide React](https://lucide.dev/)
+
+## 🏃‍♂️ Getting Started
 
 ### Prerequisites
 
-- Node.js (v18+)
-- npm or yarn
+-   Node.js (v18 or higher)
+-   npm
 
 ### Installation
 
-1.  Clone the repository.
-2.  Install dependencies:
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd My_Portfolio
+    ```
+
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
-3.  Start the development server:
+
+3.  **Start the development server:**
     ```bash
     npm run dev
     ```
-    This will start both the client (port 5000) and the server (port 3000) concurrently.
+    The application will be available at `http://localhost:5000`.
 
-## Deployment
+4.  **Build for production:**
+    ```bash
+    npm run build
+    ```
 
-### Vercel (Frontend Only / Full Stack)
-
-1.  Push your code to GitHub.
-2.  Import the project into Vercel.
-3.  Set the `Root Directory` to `client` if deploying only the frontend, or configure Vercel for a monorepo if deploying full stack.
-4.  Add environment variables from `.env.example`.
-5.  Deploy.
-
-### Render (Full Stack)
-
-1.  Create a new Web Service on Render.
-2.  Connect your GitHub repository.
-3.  Set the Build Command to: `npm install && npm run build`
-4.  Set the Start Command to: `npm start`
-5.  Add environment variables.
-
-## Project Structure
+## 📂 Project Structure
 
 ```
 /
-├── client/                 # Frontend React Application
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── lib/            # Utilities and Mock Data
-│   │   ├── pages/          # Route pages (Home, Projects, Admin, etc.)
-│   │   └── App.tsx         # Main application entry
-│   └── index.html
-├── server/                 # Backend Express API (Mockup Mode - Not Active)
-├── shared/                 # Shared types and schemas
-└── package.json            # Root dependencies and scripts
+├── client/
+│   ├── public/             # Static assets
+│   └── src/
+│       ├── components/     # UI and Feature components
+│       │   ├── home/       # Homepage sections
+│       │   ├── layout/     # Navbar, Footer
+│       │   ├── projects/   # Project related components
+│       │   └── ui/         # Shared UI components (Buttons, Cards, etc.)
+│       ├── hooks/          # Custom React hooks
+│       ├── lib/            # Utilities and Data constants
+│       ├── pages/          # Route components (Home, About, Projects, Contact)
+│       └── App.tsx         # Main application component
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
 ```
 
-## Troubleshooting
+## 🎨 Customization
 
--   **Images not loading:** Ensure all assets are correctly placed in the `public` or `attached_assets` folder and referenced with the correct path.
--   **Routing 404s:** If deploying to a static host, ensure you have a rewrite rule that directs all traffic to `index.html`.
+You can easily customize the content by editing the data files:
+
+-   **Personal Info & Projects:** Edit `client/src/lib/data.ts` to update your bio, experience, projects, and skills.
+-   **Styling:** Modify `client/src/index.css` or `tailwind.config.js` (if added) to change global styles and themes.
+
+## 🚢 Deployment
+
+This project is static-site ready and can be easily deployed to platforms like **Vercel**, **Netlify**, or **Render**.
+
+### Vercel
+
+1.  Push your code to a Git repository.
+2.  Import the project into Vercel.
+3.  Vercel should automatically detect Vite.
+4.  Deploy!
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).

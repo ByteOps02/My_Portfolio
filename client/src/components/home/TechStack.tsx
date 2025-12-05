@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const technologies = [
   "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", 
-  "PostgreSQL", "GraphQL", "Docker", "AWS", "Figma", "Redux", "Python"
+  "PostgreSQL", "Drizzle", "Docker", "AWS", "Figma", "Redux", "Supabase", "MongoDB"
 ];
 
 export default function TechStack() {

@@ -1,15 +1,10 @@
 import { memo } from 'react';
 import { Link } from 'wouter';
-import { ArrowUpRight, Calendar, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { type Project } from '@/lib/data';
 
 function ProjectCard({ project }: { project: Project }) {
-  const formattedDate = new Date(project.date).toLocaleDateString('en-US', { 
-    month: 'short', 
-    year: 'numeric' 
-  });
-
   return (
     <Link href={`/project/${project.id}`}>
       <article className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-md hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300">
@@ -40,11 +35,6 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <div className="p-5 sm:p-6">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
-            <Calendar className="h-3.5 w-3.5" />
-            <span>{formattedDate}</span>
-          </div>
-          
           <h3 className="text-xl sm:text-2xl font-bold font-heading group-hover:text-primary transition-colors duration-200 mb-2">
             {project.title}
           </h3>

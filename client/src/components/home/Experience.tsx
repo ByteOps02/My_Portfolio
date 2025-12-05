@@ -1,12 +1,9 @@
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { experiences } from "@/lib/data"; // Import experiences from data.ts
+import { experiences } from "@/lib/data";
 
 export default function Experience() {
   return (
-    <section className="py-12 container mx-auto px-6">
+    <section className="py-16 md:py-24 container mx-auto px-6">
       <div className="text-center mb-16">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -14,16 +11,16 @@ export default function Experience() {
           viewport={{ once: true }}
           className="text-3xl md:text-5xl font-heading font-bold mb-4"
         >
-          Career Outlook
+          Career Journey
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-muted-foreground max-w-2xl mx-auto"
+          className="text-muted-foreground max-w-2xl mx-auto text-lg"
         >
-          My journey and aspirations in the tech industry.
+          My path in the tech industry and professional milestones.
         </motion.p>
       </div>
 
@@ -35,13 +32,13 @@ export default function Experience() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className="relative pl-8 pb-12 last:pb-0 border-l-2 border-border hover:border-primary transition-colors"
+            className="relative pl-10 pb-12 last:pb-0 border-l-2 border-border/50 hover:border-primary transition-colors group"
           >
-            <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-primary -translate-x-[9px] shadow-lg shadow-primary/30" />
-            <span className="text-sm text-primary font-medium">{exp.year}</span>
-            <h3 className="text-xl font-bold mt-2">{exp.role}</h3>
-            <p className="text-muted-foreground font-medium">{exp.company}</p>
-            <p className="text-muted-foreground mt-2">{exp.description}</p>
+            <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-background border-2 border-primary -translate-x-[9px] group-hover:scale-125 group-hover:bg-primary transition-all duration-300 shadow-lg shadow-primary/20" />
+            <span className="text-sm font-bold text-primary uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full">{exp.year}</span>
+            <h3 className="text-2xl font-bold mt-4 mb-1 group-hover:text-primary transition-colors">{exp.role}</h3>
+            <p className="text-lg text-foreground/80 font-medium mb-3">{exp.company}</p>
+            <p className="text-muted-foreground leading-relaxed text-base">{exp.description}</p>
           </motion.div>
         ))}
       </div>

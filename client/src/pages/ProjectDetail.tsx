@@ -3,7 +3,7 @@ import { getProject, projects } from '@/lib/data';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Github, ExternalLink, ArrowRight, Calendar, User, Layers } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, ArrowRight, User, Layers } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -178,15 +178,6 @@ export default function ProjectDetail() {
                 </div>
 
                 <div className="space-y-5">
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-muted/30">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Calendar className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <span className="text-sm text-muted-foreground">Date</span>
-                      <p className="font-semibold">{project.date}</p>
-                    </div>
-                  </div>
                   <div className="flex items-center gap-4 p-4 rounded-xl bg-muted/30">
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                       <User className="h-5 w-5 text-primary" />

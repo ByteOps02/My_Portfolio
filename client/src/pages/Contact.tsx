@@ -30,8 +30,8 @@ const contactInfo = [
 
 const trustSignals = [
   { icon: Clock, text: "Response within 24 hours" },
-  { icon: MessageSquare, text: "Free initial consultation" },
-  { icon: CheckCircle2, text: "100% satisfaction guaranteed" },
+  { icon: MessageSquare, text: "Available for interviews" },
+  { icon: CheckCircle2, text: "Committed to code quality" },
 ];
 
 export default function Contact() {
@@ -101,13 +101,13 @@ export default function Contact() {
             <div className="p-5 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
               <h3 className="font-semibold mb-2">Prefer a quick chat?</h3>
               <p className="text-muted-foreground text-sm mb-3">
-                Schedule a free 15-minute call to discuss your project.
+                Let's connect to discuss how I can contribute to your team.
               </p>
               <a 
-                href="mailto:krishnarammhd@gmail.com?subject=Schedule%20a%20Call" 
+                href="mailto:krishnarammhd@gmail.com?subject=Interview%20Call" 
                 className="inline-flex items-center text-sm font-medium text-primary hover:underline"
               >
-                Book a call <span className="ml-1">→</span>
+                Schedule a call <span className="ml-1">→</span>
               </a>
             </div>
           </motion.div>

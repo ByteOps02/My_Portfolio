@@ -2,30 +2,38 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Download, Github, Linkedin, Twitter, Heart, Zap, Users, Target } from 'lucide-react';
-import { skills, experiences } from '@/lib/data';
+import { skillCategories, experiences } from '@/lib/data';
 import { motion } from 'framer-motion';
 import Services from '@/components/home/Services';
+import { Badge } from '@/components/ui/badge';
 
-function SkillBar({ name, level }: { name: string; level: number }) {
+function SkillCard({ title, skills }: { title: string; skills: { name: string; level: number }[] }) {
   return (
-    <motion.div 
-      className="group"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+    <motion.div
+      className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-      <div className="flex justify-between items-center mb-2">
-        <span className="font-medium text-sm group-hover:text-primary transition-colors">{name}</span>
-        <span className="text-xs text-muted-foreground">{level}%</span>
-      </div>
-      <div className="h-2 bg-secondary rounded-full overflow-hidden">
-        <motion.div 
-          className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        />
+      <h3 className="text-xl font-bold mb-6 text-primary">{title}</h3>
+      <div className="space-y-4">
+        {skills.map((skill, index) => (
+          <div key={index} className="group">
+            <div className="flex justify-between items-center mb-1.5">
+              <span className="font-medium text-sm group-hover:text-foreground transition-colors text-muted-foreground">{skill.name}</span>
+              <span className="text-xs text-muted-foreground">{skill.level}%</span>
+            </div>
+            <div className="h-2 bg-secondary/50 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
+                initial={{ width: 0 }}
+                whileInView={{ width: `${skill.level}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeOut", delay: index * 0.1 }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </motion.div>
   );
@@ -51,10 +59,17 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-1"
           >
-            <div className="aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-border shadow-xl relative z-10">
-              <img src="/images/professional_developer_avatar.png" alt="Developer Portrait" loading="lazy" className="w-full h-full object-cover" />
+            <div className="aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-border shadow-xl relative z-10 group">
+              <img 
+                src="/images/professional_developer_avatar.png" 
+                alt="Developer Portrait" 
+                loading="lazy" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <div className="absolute -z-10 top-4 -left-4 w-full h-full border-2 border-primary/20 rounded-2xl hidden lg:block" />
+            <div className="absolute -z-10 top-6 -left-6 w-full h-full border-2 border-primary/20 rounded-2xl hidden lg:block" />
+            <div className="absolute -z-20 -bottom-6 -right-6 w-2/3 h-2/3 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-3xl" />
           </motion.div>
           
           <motion.div 
@@ -63,55 +78,55 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="order-1 lg:order-2"
           >
-            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">About Me</span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">
-              More than just <span className="text-primary">Code.</span>
+            <Badge variant="secondary" className="mb-4 px-3 py-1 text-xs uppercase tracking-widest font-semibold text-primary bg-primary/10 hover:bg-primary/20 border-transparent">
+              About Me
+            </Badge>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
+              More than just <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">Code.</span>
             </h1>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate Full Stack Developer with <strong className="text-foreground">3+ years of experience</strong> building modern web applications. 
-                With a strong foundation in React, TypeScript, and Node.js, I create solutions that are both functional and beautiful.
+                I'm a passionate <strong className="text-foreground font-semibold">Full Stack Developer</strong> with a knack for building robust and scalable web applications. 
+                With deep expertise in the modern JavaScript ecosystem, I transform complex requirements into elegant digital solutions.
               </p>
               <p>
-                My philosophy is simple: software should not only function perfectly but also provide an exceptional user experience. 
-                I specialize in building <strong className="text-foreground">accessible, performant, and visually stunning</strong> applications.
+                My philosophy centers on the intersection of <strong className="text-foreground font-semibold">design and functionality</strong>. 
+                I believe that great software should not only run flawlessly but also provide an intuitive and delightful experience for every user.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3 mt-8">
-              <Button size="lg" className="rounded-full h-12 px-6 shadow-lg shadow-primary/20">
+            <div className="flex flex-wrap gap-4 mt-10">
+              <Button size="lg" className="rounded-full h-12 px-8 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
                 <Download className="mr-2 h-4 w-4" /> Download Resume
               </Button>
-              <div className="flex gap-2">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0">
-                    <Github className="h-5 w-5" />
-                  </Button>
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0">
-                    <Linkedin className="h-5 w-5" />
-                  </Button>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0">
-                    <Twitter className="h-5 w-5" />
-                  </Button>
-                </a>
+              <div className="flex gap-3">
+                {[
+                  { icon: Github, href: "https://github.com" },
+                  { icon: Linkedin, href: "https://linkedin.com" },
+                  { icon: Twitter, href: "https://twitter.com" }
+                ].map((social, i) => (
+                  <a key={i} href={social.href} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0 border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-all duration-300">
+                      <social.icon className="h-5 w-5" />
+                    </Button>
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
         </section>
 
-        <section className="mb-20 md:mb-28">
+        <section className="mb-24 md:mb-32 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full bg-primary/5 blur-[100px] -z-10 rounded-full" />
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">What Drives Me</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">My Values</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">The principles that guide my work and collaboration.</p>
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Values</Badge>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">What Drives Me</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto text-lg">The core principles that guide my work, code, and collaboration.</p>
           </motion.div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -122,53 +137,53 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors"
+                className="p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                  <value.icon className="h-6 w-6" />
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <value.icon className="h-7 w-7" />
                 </div>
-                <h3 className="font-bold mb-2">{value.title}</h3>
-                <p className="text-sm text-muted-foreground">{value.description}</p>
+                <h3 className="font-bold text-xl mb-3">{value.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        <section className="mb-20 md:mb-28">
+        <section className="mb-24 md:mb-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">Expertise</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">Technical Skills</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">The technologies and tools I use to bring ideas to life.</p>
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Expertise</Badge>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">Technical Skills</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto text-lg">The technologies and tools I leverage to build world-class applications.</p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 max-w-4xl mx-auto">
-            {skills.map((skill) => (
-              <SkillBar key={skill.id} name={skill.name} level={skill.level} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skillCategories.map((category, index) => (
+              <SkillCard key={category.title} title={category.title} skills={category.skills} />
             ))}
           </div>
         </section>
         
-        <section className="mb-20 md:mb-28">
+        <section className="mb-24 md:mb-32">
           <Services />
         </section>
         
-        <section className="mb-16 md:mb-20">
+        <section className="mb-20 md:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">Journey</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3">Career Path</h2>
+            <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Path</Badge>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">Career Journey</h2>
           </motion.div>
           
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -176,13 +191,13 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative pl-8 pb-10 last:pb-0 border-l-2 border-border hover:border-primary transition-colors"
+                className="relative pl-10 pb-12 last:pb-0 border-l-2 border-border/50 hover:border-primary transition-colors group"
               >
-                <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-primary -translate-x-[7px] shadow-lg shadow-primary/30" />
-                <span className="text-xs text-primary font-medium uppercase tracking-wider">{exp.year}</span>
-                <h3 className="text-lg font-bold mt-1">{exp.role}</h3>
-                <p className="text-muted-foreground text-sm font-medium">{exp.company}</p>
-                <p className="text-muted-foreground text-sm mt-2">{exp.description}</p>
+                <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-background border-2 border-primary -translate-x-[9px] group-hover:scale-125 group-hover:bg-primary transition-all duration-300 shadow-lg shadow-primary/20" />
+                <span className="text-sm font-bold text-primary uppercase tracking-wider bg-primary/5 px-3 py-1 rounded-full">{exp.year}</span>
+                <h3 className="text-2xl font-bold mt-4 mb-1 group-hover:text-primary transition-colors">{exp.role}</h3>
+                <p className="text-lg text-foreground/80 font-medium mb-3">{exp.company}</p>
+                <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
               </motion.div>
             ))}
           </div>
