@@ -100,9 +100,9 @@ export default function About() {
               </Button>
               <div className="flex gap-3">
                 {[
-                  { icon: Github, href: "https://github.com" },
-                  { icon: Linkedin, href: "https://linkedin.com" },
-                  { icon: Twitter, href: "https://twitter.com" }
+                  { icon: Github, href: "https://github.com/ByteOps02" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/ram-krishna-419528287/" },
+                  { icon: Twitter, href: "https://x.com/krishnarammhd" }
                 ].map((social, i) => (
                   <a key={i} href={social.href} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" variant="outline" className="rounded-full h-12 w-12 p-0 border-border hover:border-primary hover:bg-primary/5 hover:text-primary transition-all duration-300">

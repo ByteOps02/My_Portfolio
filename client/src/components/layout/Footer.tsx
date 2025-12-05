@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 
 const navLinks = ['Projects', 'About', 'Contact'];
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+  { icon: Github, href: "https://github.com/ByteOps02", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/ram-krishna-419528287/", label: "LinkedIn" },
+  { icon: Twitter, href: "https://x.com/krishnarammhd", label: "Twitter" },
   { icon: Mail, href: "mailto:krishnarammhd@gmail.com", label: "Email" },
 ];
 
