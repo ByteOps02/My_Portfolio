@@ -1,30 +1,32 @@
 # Modern Developer Portfolio
 
-A premium, high-performance portfolio website designed to showcase software development projects and technical skills. Built with modern web technologies, focusing on aesthetics, accessibility, and performance.
+A premium, high-performance portfolio website designed to showcase software development projects, technical skills, and professional experience. Built with modern web technologies, focusing on aesthetics, accessibility, and performance.
 
 ## 🚀 Features
 
 - **Premium UI/UX:** Immersive design with glassmorphism, parallax scrolling, and fluid animations using **Framer Motion**.
 - **Responsive Design:** Fully optimized for all devices, from mobile to extra-large desktops.
-- **Interactive Components:**
-    -   Dynamic "Tech Stack" grid with hover effects.
-    -   Project showcase with detailed views.
-    -   Smooth page transitions and gesture-based interactions.
-- **Theme System:** Built-in Dark/Light mode support (defaulting to system preference).
+- **Interactive Sections:**
+    -   **Hero Section:** Dynamic background with text reveal animations.
+    -   **Tech Stack:** Grid layout showcasing skills with progress indicators.
+    -   **Experience Timeline:** Visual representation of professional history.
+    -   **Project Showcase:** Detailed cards with hover effects, categorization, and dedicated detail pages.
+    -   **Services:** Highlighting core competencies and offerings.
+    -   **Contact Form:** Fully functional form with validation using **Zod** and **React Hook Form**.
+- **Theme System:** Built-in Dark/Light mode support.
 - **Performance:** Lightning-fast load times powered by **Vite** and **React 19**.
 
 ## 🛠️ Tech Stack
 
-This project is built using the following technologies:
+This project is built using a robust modern stack:
 
--   **Framework:** [React 19](https://react.dev/)
--   **Build Tool:** [Vite](https://vitejs.dev/)
--   **Language:** [TypeScript](https://www.typescriptlang.org/)
--   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
--   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **Core:** [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
+-   **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/), [React CountUp](https://github.com/glennreilly/react-countup), [React Simple Typewriter](https://github.com/awran5/react-simple-typewriter)
 -   **Routing:** [Wouter](https://github.com/molefrog/wouter)
--   **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix UI primitives)
--   **Icons:** [Lucide React](https://lucide.dev/)
+-   **State & Data:** [TanStack Query](https://tanstack.com/query/latest)
+-   **Forms:** [React Hook Form](https://react-hook-form.com/), [Zod](https://zod.dev/)
+-   **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix UI primitives), [Lucide React](https://lucide.dev/) (Icons)
 
 ## 🏃‍♂️ Getting Started
 
@@ -56,44 +58,62 @@ This project is built using the following technologies:
     ```bash
     npm run build
     ```
+    The build output will be in the `dist` folder.
 
 ## 📂 Project Structure
 
 ```
 /
 ├── client/
-│   ├── public/             # Static assets
+│   ├── public/             # Static assets (images, icons)
 │   └── src/
-│       ├── components/     # UI and Feature components
-│       │   ├── home/       # Homepage sections
-│       │   ├── layout/     # Navbar, Footer
-│       │   ├── projects/   # Project related components
-│       │   └── ui/         # Shared UI components (Buttons, Cards, etc.)
-│       ├── hooks/          # Custom React hooks
-│       ├── lib/            # Utilities and Data constants
-│       ├── pages/          # Route components (Home, About, Projects, Contact)
-│       └── App.tsx         # Main application component
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
+│       ├── components/     # React components
+│       │   ├── contact/    # Contact form components
+│       │   ├── home/       # Landing page sections (Hero, Stats, etc.)
+│       │   ├── layout/     # Global layout (Navbar, Footer)
+│       │   ├── projects/   # Project card and gallery components
+│       │   └── ui/         # Reusable UI primitives (Buttons, Inputs, etc.)
+│       ├── hooks/          # Custom hooks (use-mobile, use-toast)
+│       ├── lib/            # Utilities and Configuration
+│       │   ├── data.ts     # CENTRAL DATA FILE (Edit this to change content)
+│       │   └── utils.ts    # Helper functions
+│       ├── pages/          # Application routes/pages
+│       └── App.tsx         # Main app entry point
+├── package.json            # Project dependencies and scripts
+├── tsconfig.json           # TypeScript configuration
+└── vite.config.ts          # Vite build configuration
 ```
 
 ## 🎨 Customization
 
-You can easily customize the content by editing the data files:
+This portfolio is designed to be easily customizable without deep code changes.
 
--   **Personal Info & Projects:** Edit `client/src/lib/data.ts` to update your bio, experience, projects, and skills.
--   **Styling:** Modify `client/src/index.css` or `tailwind.config.js` (if added) to change global styles and themes.
+### 1. Update Content (`client/src/lib/data.ts`)
+Open `client/src/lib/data.ts`. This file contains all the static data for the site:
+-   **Projects:** Add your own projects to the `projects` array.
+-   **Skills:** Update the `skillCategories` to reflect your tech stack.
+-   **Experience:** Modify the `experiences` array.
+-   **Services:** Change the `services` list.
+
+### 2. Update Images
+Place your images in `client/public/images/`.
+-   Update the references in `data.ts` (e.g., `image: "/images/your-project.png"`).
+-   Replace default assets like `professional_developer_avatar.png` with your own photo.
+
+### 3. Styling
+Global styles are defined in `client/src/index.css`. Since this project uses Tailwind CSS, most styling changes can be made directly in the components or by updating the Tailwind configuration.
 
 ## 🚢 Deployment
 
-This project is static-site ready and can be easily deployed to platforms like **Vercel**, **Netlify**, or **Render**.
+This project is a static site (SPA) and can be deployed to any static hosting provider.
 
-### Vercel
-
-1.  Push your code to a Git repository.
-2.  Import the project into Vercel.
-3.  Vercel should automatically detect Vite.
+### Vercel / Netlify / Render
+1.  Push your code to a Git repository (GitHub/GitLab).
+2.  Connect your repository to the hosting platform.
+3.  **Build Settings:**
+    -   **Framework Preset:** Vite
+    -   **Build Command:** `npm run build`
+    -   **Output Directory:** `dist`
 4.  Deploy!
 
 ## 📄 License
