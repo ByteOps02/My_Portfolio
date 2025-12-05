@@ -112,21 +112,7 @@ export default function ProjectDetail() {
             >
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                 <span className="w-10 h-[2px] bg-primary block rounded-full" /> 
-                The Challenge
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                {project.description}
-              </p>
-            </motion.section>
-            
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="w-10 h-[2px] bg-primary block rounded-full" /> 
-                The Solution
+                About the Project
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 {project.fullDescription}
