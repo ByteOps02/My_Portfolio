@@ -95,9 +95,11 @@ export default function About() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button size="lg" className="rounded-full h-12 px-8 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
-                <Download className="mr-2 h-4 w-4" /> Download Resume
-              </Button>
+              <a href="/my_resume.pdf" download>
+                <Button size="lg" className="rounded-full h-12 px-8 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
+                  <Download className="mr-2 h-4 w-4" /> Download Resume
+                </Button>
+              </a>
               <div className="flex gap-3">
                 {[
                   { icon: Github, href: "https://github.com/ByteOps02" },
