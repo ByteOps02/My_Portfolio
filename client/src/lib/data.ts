@@ -29,7 +29,7 @@ export const projects: Project[] = [
       "A comprehensive personal finance management application for tracking income, expenses, and budgets with insightful analytics.",
     fullDescription:
       "The Expense Tracker is a full-featured financial management solution designed to help users take control of their finances. Built with a focus on user experience, it features an intuitive dashboard with real-time charts and graphs for visualizing spending patterns. Users can categorize transactions, set monthly budgets, and receive smart alerts when approaching spending limits. The application includes recurring transaction support, export functionality for tax preparation, and beautiful visualizations that make financial data easy to understand. The dark mode interface reduces eye strain while the responsive design ensures seamless access across all devices.",
-    image: "/images/expense_tracker_app_dashboard.png",
+    image: "/images/expense_tracker.png",
     technologies: [
       "React",
       "JavaScript",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     link: "https://expense-tracker-52hv.vercel.app/login",
     repo: "https://github.com/ByteOps02/Expense_Tracker",
     featured: true,
-    images: ["/images/expense_tracker_app_dashboard.png"],
+    images: ["/images/expense_tracker.png"],
   },
   {
     id: "visitor-management",
@@ -52,7 +52,7 @@ export const projects: Project[] = [
       "A modern enterprise solution for managing visitor check-ins, badge printing, and real-time analytics for corporate offices.",
     fullDescription:
       "The Visitor Management System revolutionizes how organizations handle guest arrivals and security protocols. This comprehensive solution streamlines the check-in process with QR code scanning, digital signature capture, and instant badge printing. The system includes pre-registration capabilities allowing hosts to register expected visitors in advance. Real-time dashboards provide security teams with instant visibility into who is on-premises. Features include watchlist screening, emergency evacuation lists, visitor photo capture, and detailed analytics on visitor patterns. The system integrates seamlessly with existing access control systems and sends automatic notifications to hosts when their guests arrive.",
-    image: "/images/visitor_management_system_ui.png",
+    image: "/images/visitor_management_system.png",
     technologies: [
       "React",
       "TypeScript",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     link: "https://dbms-project-indol.vercel.app/",
     repo: "https://github.com/ByteOps02/DBMS_Project",
     featured: true,
-    images: ["/images/visitor_management_system_ui.png"],
+    images: ["/images/visitor_management_system.png"],
   },
   {
     id: "snufi-pharma",
@@ -77,12 +77,12 @@ export const projects: Project[] = [
       "A premium pharmaceutical company website showcasing products, research initiatives, and corporate information.",
     fullDescription:
       "Snufi Pharma required a world-class digital presence that reflects their commitment to healthcare excellence. The website features a sophisticated design with smooth animations and micro-interactions that enhance user engagement. The product catalog showcases their pharmaceutical offerings with detailed information and elegant presentation. The research section highlights ongoing clinical trials and scientific publications. Built with accessibility in mind, the site achieves WCAG 2.1 AA compliance. The responsive design ensures perfect presentation across all devices, from mobile phones to large desktop displays. Performance optimization techniques ensure lightning-fast page loads, critical for user engagement and SEO.",
-    image: "/images/snufi_pharma_website_design.png",
+    image: "/images/snufi_pharma_website.png",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "SEO"],
     link: "https://snufi-pharma.vercel.app/",
     repo: "https://github.com/ByteOps02/Snufi_Pharma",
     featured: true,
-    images: ["/images/snufi_pharma_website_design.png"],
+    images: ["/images/snufi_pharma_website.png"],
   },
 ];
 
