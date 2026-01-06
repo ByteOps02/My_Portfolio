@@ -70,8 +70,8 @@ export default function Projects() {
                 {categories.map(cat => (
                   <Button
                     key={cat}
-                    variant={filter === cat ? "default" : "outline"}
-                    size="sm"
+                    variant={filter === cat ? "default" : "secondary"}
+                    size="md"
                     onClick={() => setFilter(cat)}
                     className={`rounded-full transition-all duration-200 border-transparent ${
                       filter === cat 
@@ -115,7 +115,7 @@ export default function Projects() {
         </motion.div>
 
         {filteredProjects.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}

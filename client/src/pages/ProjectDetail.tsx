@@ -1,21 +1,42 @@
+import { useState } from 'react';
 import { useRoute, Link } from 'wouter';
 import { getProject, projects } from '@/lib/data';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Github, ExternalLink, ArrowRight, User, Layers } from 'lucide-react';
+import {
+  ArrowLeft,
+  Github,
+  ExternalLink,
+  ArrowRight,
+  User,
+  Layers,
+} from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 export default function ProjectDetail() {
   const [, params] = useRoute('/project/:id');
   const project = params?.id ? getProject(params.id) : undefined;
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 200]);
 
-  const currentIndex = projects.findIndex(p => p.id === params?.id);
+  const currentIndex = projects.findIndex((p) => p.id === params?.id);
   const nextProject = projects[(currentIndex + 1) % projects.length];
+
+  const nextImage = () => {
+    setActiveIndex((prev) => (prev + 1) % (project?.images.length || 1));
+  };
+
+  const prevImage = () => {
+    setActiveIndex(
+      (prev) =>
+        (prev - 1 + (project?.images.length || 1)) %
+        (project?.images.length || 1)
+    );
+  };
 
   if (!project) {
     return (
@@ -29,7 +50,9 @@ export default function ProjectDetail() {
             <Layers className="h-10 w-10 text-muted-foreground" />
           </div>
           <h1 className="text-3xl font-bold mb-4">Project not found</h1>
-          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-8">
+            The project you're looking for doesn't exist.
+          </p>
           <Link href="/projects">
             <Button variant="outline" className="rounded-full" size="lg">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Projects
@@ -43,16 +66,53 @@ export default function ProjectDetail() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
-      <div className="relative h-[75vh] min-h-[600px] w-full overflow-hidden">
+
+      <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
         <motion.div style={{ y }} className="absolute inset-0">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover object-center"
-          />
+          <AnimatePresence>
+            <motion.img
+              key={activeIndex}
+              src={project.images[activeIndex]}
+              alt={`${project.title} image ${activeIndex + 1}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="w-full h-full object-cover object-center"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
         </motion.div>
+
+        {project.images.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full z-20 hover:bg-black/50 transition-colors"
+            >
+              <ArrowLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full z-20 hover:bg-black/50 transition-colors"
+            >
+              <ArrowRight className="h-6 w-6" />
+            </button>
+            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              {project.images.map((_, i) => (
+                <div
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  className={`w-3 h-3 rounded-full cursor-pointer transition-colors ${
+                    i === activeIndex
+                      ? "bg-white scale-110"
+                      : "bg-white/50 hover:bg-white/75"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
         
         <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-20 container mx-auto relative z-10">
           <motion.div 
@@ -133,14 +193,14 @@ export default function ProjectDetail() {
                   <motion.div 
                     key={idx} 
                     className="group relative overflow-hidden rounded-2xl border border-border shadow-2xl"
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-500 z-10" />
                     <img 
                       src={img} 
                       alt={`${project.title} screenshot ${idx + 1}`} 
-                      className="w-full transition-transform duration-700 group-hover:scale-105" 
+                      className="w-full transition-transform duration-700 group-hover:scale-103" 
                     />
                   </motion.div>
                 ))}
@@ -187,13 +247,13 @@ export default function ProjectDetail() {
 
               <Link href={`/project/${nextProject.id}`}>
                 <motion.div 
-                  className="p-6 rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 cursor-pointer hover:from-primary/15 hover:to-primary/10 transition-all duration-300 group"
-                  whileHover={{ y: -4 }}
+                  className="p-6 rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 cursor-pointer hover:from-primary/10 hover:to-primary/5 transition-all duration-300 group"
+                  whileHover={{ y: -2 }}
                 >
                   <h4 className="text-sm text-muted-foreground mb-2">Next Project</h4>
                   <div className="flex justify-between items-center">
                     <span className="font-bold text-xl group-hover:text-primary transition-colors">{nextProject.title}</span>
-                    <ArrowRight className="h-6 w-6 text-primary group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="h-6 w-6 text-primary group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </motion.div>
               </Link>

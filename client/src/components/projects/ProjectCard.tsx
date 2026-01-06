@@ -1,59 +1,129 @@
-import { memo } from 'react';
-import { Link } from 'wouter';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { type Project } from '@/lib/data';
+import { memo, useState } from "react";
+import { Link } from "wouter";
+import {
+  ArrowUpRight,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { type Project } from "@/lib/data";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ProjectCard({ project }: { project: Project }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveIndex((prev) => (prev + 1) % project.images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveIndex(
+      (prev) => (prev - 1 + project.images.length) % project.images.length
+    );
+  };
+
   return (
     <Link href={`/project/${project.id}`}>
-      <article className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-md hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300">
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+      <article className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-md hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300">
+        <div className="relative h-60 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300 z-10" />
+          <AnimatePresence initial={false}>
+            <motion.img
+              key={activeIndex}
+              src={project.images[activeIndex]}
+              alt={project.title}
+              loading="lazy"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+            />
+          </AnimatePresence>
           <div className="absolute top-4 left-4 z-20">
             <Badge className="bg-background/90 text-foreground backdrop-blur-sm border-0 shadow-sm">
               {project.category}
             </Badge>
           </div>
-          <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+          <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-1">
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg">
               <ArrowUpRight className="h-5 w-5 text-primary-foreground" />
             </div>
           </div>
-          <div className="absolute bottom-4 left-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+          <div className="absolute bottom-4 left-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-1">
             <div className="flex items-center gap-2 text-white/90 text-sm">
               <ExternalLink className="h-4 w-4" />
               <span>View Case Study</span>
             </div>
           </div>
+          {project.images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 text-white p-1 rounded-full z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 text-white p-1 rounded-full z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {project.images.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 rounded-full ${
+                      i === activeIndex ? "bg-white" : "bg-white/50"
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         <div className="p-5 sm:p-6">
           <h3 className="text-xl sm:text-2xl font-bold font-heading group-hover:text-primary transition-colors duration-200 mb-2">
             {project.title}
           </h3>
-          
+
           <p className="text-muted-foreground text-sm sm:text-base mb-4 line-clamp-2 leading-relaxed">
             {project.description}
           </p>
 
           <div className="flex flex-wrap gap-1.5">
             {project.technologies.slice(0, 4).map((tech) => (
-              <Badge key={tech} variant="secondary" className="rounded-full text-xs font-normal px-2.5 py-0.5">
+              <Badge
+                key={tech}
+                variant="secondary"
+                className="rounded-full text-xs font-normal px-2.5 py-0.5"
+              >
                 {tech}
               </Badge>
             ))}
             {project.technologies.length > 4 && (
-              <Badge variant="outline" className="rounded-full text-xs font-normal px-2.5 py-0.5">
+              <Badge
+                variant="outline"
+                className="rounded-full text-xs font-normal px-2.5 py-0.5"
+              >
                 +{project.technologies.length - 4}
               </Badge>
             )}
+          </div>
+
+          <div className="mt-6 flex justify-end">
+            <Button variant="outline" size="sm" className="rounded-full">
+              View Project <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
       </article>
