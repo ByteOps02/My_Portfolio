@@ -109,12 +109,10 @@ export const skillCategories = [
   {
     title: "Frontend",
     skills: [
+      { name: "HTML5 / CSS3", level: 95 }
       { name: "React / Next.js", level: 95 },
-      { name: "TypeScript", level: 85 },
+      { name: "JavaScript / TypeScript", level: 85 },
       { name: "Tailwind CSS", level: 85 },
-      { name: "Framer Motion", level: 90 },
-      { name: "HTML5 / CSS3", level: 95 },
-      { name: "Redux / Zustand", level: 85 },
     ],
   },
   {
