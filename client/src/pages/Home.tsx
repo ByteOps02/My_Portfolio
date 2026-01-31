@@ -6,7 +6,7 @@ import TechStack from '@/components/home/TechStack';
 import Services from '@/components/home/Services';
 import Experience from '@/components/home/Experience';
 import ProjectCard from '@/components/projects/ProjectCard';
-import ScrollVelocity from '@/components/home/ScrollVelocity';
+
 import { getFeaturedProjects } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -25,11 +25,11 @@ export default function Home() {
       <TechStack />
       <Services />
       <Experience />
-      <ScrollVelocity />
+
       <Stats />
-      
+
       <section className="py-16 md:py-24 container mx-auto px-6">
-        <motion.div 
+        <motion.div
           className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

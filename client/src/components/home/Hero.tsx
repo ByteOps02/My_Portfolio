@@ -45,7 +45,7 @@ function Hero() {
         <div className="mb-8 flex flex-col items-center w-full">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] w-full flex flex-col items-center">
             <TextReveal text="Building Digital" className="justify-center" delay={0.2} />
-            <TextReveal text="Experiences." className="justify-center text-primary" delay={0.4} />
+            <TextReveal text="Experiences." className="justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-blue-500 py-2" delay={0.4} />
           </h1>
         </div>
 
@@ -56,12 +56,17 @@ function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          I craft{' '}
-          <TypewriterLoop
-            words={['premium web apps', 'scalable systems', 'digital products']}
-            className="font-semibold text-foreground"
-          />{' '}
-          with modern technologies. Focusing on motion, accessibility, and user-centric design.
+          I architect <TypewriterLoop
+            words={[
+              'immersive web experiences',
+              'scalable enterprise systems',
+              'next-gen digital products',
+              'pixel-perfect interfaces'
+            ]}
+            className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+          /> that leave a lasting impact.
+          <br className="hidden md:block" />
+          Meticulously crafted with a focus on motion, performance, and user-centric design.
         </motion.p>
 
         {/* Buttons */}

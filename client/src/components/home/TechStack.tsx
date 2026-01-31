@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
 const technologies = [
-  "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", 
-  "PostgreSQL", "Drizzle", "Docker", "AWS", "Figma", "Redux", "Supabase", "MongoDB"
+  "React", "TypeScript", "Node.js", "Express.js", "Tailwind CSS",
+  "PostgreSQL", "Drizzle ORM", "Docker", "AWS", "Supabase", "MongoDB"
 ];
 
 export default function TechStack() {
@@ -13,12 +13,12 @@ export default function TechStack() {
           Crafting Applications While Continuously Learning
         </p>
       </div>
-      
+
       <div className="relative flex overflow-hidden group">
         <div className="flex animate-marquee whitespace-nowrap">
           {technologies.map((tech, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className="mx-8 text-3xl md:text-6xl font-heading font-bold text-muted-foreground/20 hover:text-primary/50 transition-colors cursor-default"
             >
               {tech}
@@ -27,8 +27,8 @@ export default function TechStack() {
         </div>
         <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex">
           {technologies.map((tech, index) => (
-            <span 
-              key={`duplicate-${index}`} 
+            <span
+              key={`duplicate-${index}`}
               className="mx-8 text-3xl md:text-6xl font-heading font-bold text-muted-foreground/20 hover:text-primary/50 transition-colors cursor-default"
             >
               {tech}

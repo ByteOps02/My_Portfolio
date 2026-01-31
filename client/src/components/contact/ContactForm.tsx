@@ -39,13 +39,13 @@ export default function ContactForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    
+
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-        setIsSubmitting(false);
+
+    setIsSubmitting(false);
     setIsSuccess(true);
     form.reset();
-    
+
     setTimeout(() => setIsSuccess(false), 5000);
   }
 
@@ -77,14 +77,14 @@ export default function ContactForm() {
               control={form.control}
               name="name"
               render={({ field }) => (
-                
+
                 <FormItem>
                   <FormLabel className="text-foreground">Name</FormLabel>
                   <FormControl>
-                    <Input 
-                      placeholder="Enter Full Name" 
-                      {...field} 
-                      className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl" 
+                    <Input
+                      placeholder="Enter Full Name"
+                      {...field}
+                      className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl"
                     />
                   </FormControl>
                   <FormMessage />
@@ -98,10 +98,10 @@ export default function ContactForm() {
                 <FormItem>
                   <FormLabel className="text-foreground">Email</FormLabel>
                   <FormControl>
-                    <Input 
-                      placeholder="email@example.com" 
-                      {...field} 
-                      className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl" 
+                    <Input
+                      placeholder="email@example.com"
+                      {...field}
+                      className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl"
                     />
                   </FormControl>
                   <FormMessage />
@@ -109,7 +109,7 @@ export default function ContactForm() {
               )}
             />
           </div>
-          
+
           <FormField
             control={form.control}
             name="subject"
@@ -117,17 +117,17 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel className="text-foreground">Subject</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="Project Inquiry" 
-                    {...field} 
-                    className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl" 
+                  <Input
+                    placeholder="Job Opportunity / Recruitment Inquiry"
+                    {...field}
+                    className="h-12 bg-background/80 border-border/50 focus:border-primary rounded-xl"
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="message"
@@ -135,21 +135,21 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel className="text-foreground">Message</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Tell me about your project..." 
-                    className="min-h-[150px] bg-background/80 border-border/50 focus:border-primary rounded-xl resize-none" 
-                    {...field} 
+                  <Textarea
+                    placeholder="Please share the details of the job opportunity..."
+                    className="min-h-[100px] bg-background/80 border-border/50 focus:border-primary rounded-xl resize-none"
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
-          <Button 
-            type="submit" 
-            size="lg" 
-            className="w-full h-14 rounded-xl text-lg shadow-lg shadow-primary/20" 
+
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full h-10 rounded-xl text-base shadow-lg shadow-primary/20"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

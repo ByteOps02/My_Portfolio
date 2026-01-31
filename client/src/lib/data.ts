@@ -53,11 +53,7 @@ export const projects: Project[] = [
     featured: true,
     images: [
       "/images/expense_tracker.png",
-      "/images/expense_tracker_1.png",
-      "/images/expense_tracker_2.png",
-      "/images/expense_tracker_3.png",
-      "/images/expense_tracker_5.png",
-      "/images/expense_tracker_4.png",
+      "/images/expense_tracker_1.png"
     ],
   },
   {
@@ -84,16 +80,9 @@ export const projects: Project[] = [
     link: "https://dbms-project-indol.vercel.app/",
     repo: "https://github.com/ByteOps02/DBMS_Project",
     featured: true,
-        images: [
-      "/images/visitor_management_system.png",
+    images: [
       "/images/VMS_1.png",
-      "/images/VMS_2.png",
-      "/images/VMS_3.png",
-      "/images/VMS_4.png", 
-      "/images/VMS_5.png",
-      "/images/VMS_6.png",
-      "/images/VMS_7.png",
-      "/images/VMS_8.png",                       
+      "/images/visitor_management_system.png"
     ],
   },
   {
@@ -109,10 +98,9 @@ export const projects: Project[] = [
     link: "https://snufi-pharma.vercel.app/",
     repo: "https://github.com/ByteOps02/Snufi_Pharma",
     featured: true,
-        images: [
+    images: [
       "/images/snufi_pharma_website.png",
-      "https://placehold.co/600x400/EEE/31343C",
-      "https://placehold.co/600x400/31343C/EEE",
+      "https://placehold.co/600x400/EEE/31343C"
     ],
   },
 ];

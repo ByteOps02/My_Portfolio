@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useState, useEffect } from "react";
 import { Link } from "wouter";
 import {
   ArrowUpRight,
@@ -14,6 +14,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function ProjectCard({ project }: { project: Project }) {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (project.images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % project.images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [project.images.length]);
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -43,8 +53,8 @@ function ProjectCard({ project }: { project: Project }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
             />
           </AnimatePresence>
           <div className="absolute top-4 left-4 z-20">
@@ -81,9 +91,8 @@ function ProjectCard({ project }: { project: Project }) {
                 {project.images.map((_, i) => (
                   <div
                     key={i}
-                    className={`w-2 h-2 rounded-full ${
-                      i === activeIndex ? "bg-white" : "bg-white/50"
-                    }`}
+                    className={`w-2 h-2 rounded-full ${i === activeIndex ? "bg-white" : "bg-white/50"
+                      }`}
                   />
                 ))}
               </div>

@@ -24,7 +24,7 @@ function SkillCard({ title, skills }: { title: string; skills: { name: string; l
               <span className="text-xs text-muted-foreground">{skill.level}%</span>
             </div>
             <div className="h-2 bg-secondary/50 rounded-full overflow-hidden">
-              <motion.div 
+              <motion.div
                 className="h-full bg-gradient-to-r from-primary/80 to-primary rounded-full"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${skill.level}%` }}
@@ -50,29 +50,29 @@ export default function About() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
-      
+
       <main className="pt-24 md:pt-32 container mx-auto px-6">
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20 md:mb-28">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-1"
           >
             <div className="aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-border shadow-xl relative z-10 group">
-              <img 
-                src="/images/professional_developer_avatar.png" 
-                alt="Developer Portrait" 
-                loading="lazy" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+              <img
+                src="/images/professional_dev_avatar.jpeg"
+                alt="Developer Portrait"
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             <div className="absolute -z-10 top-6 -left-6 w-full h-full border-2 border-primary/20 rounded-2xl hidden lg:block" />
             <div className="absolute -z-20 -bottom-6 -right-6 w-2/3 h-2/3 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-3xl" />
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -86,16 +86,16 @@ export default function About() {
             </h1>
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate <strong className="text-foreground font-semibold">Full Stack Developer</strong> with a knack for building robust and scalable web applications. 
+                I'm a passionate <strong className="text-foreground font-semibold">Full Stack Developer</strong> with a knack for building robust and scalable web applications.
                 With deep expertise in the modern JavaScript ecosystem, I transform complex requirements into elegant digital solutions.
               </p>
               <p>
-                My philosophy centers on the intersection of <strong className="text-foreground font-semibold">design and functionality</strong>. 
+                My philosophy centers on the intersection of <strong className="text-foreground font-semibold">design and functionality</strong>.
                 I believe that great software should not only run flawlessly but also provide an intuitive and delightful experience for every user.
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mt-10">
-              <a href="/my_resume.pdf" download>
+              <a href="/client/public/Ram Krishna.pdf.pdf" download>
                 <Button size="lg" className="rounded-full h-12 px-8 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
                   <Download className="mr-2 h-4 w-4" /> Download Resume
                 </Button>
@@ -119,7 +119,7 @@ export default function About() {
 
         <section className="mb-24 md:mb-32 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full bg-primary/5 blur-[100px] -z-10 rounded-full" />
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ export default function About() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">What Drives Me</h2>
             <p className="text-muted-foreground max-w-xl mx-auto text-lg">The core principles that guide my work, code, and collaboration.</p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <motion.div
@@ -162,18 +162,18 @@ export default function About() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">Technical Skills</h2>
             <p className="text-muted-foreground max-w-xl mx-auto text-lg">The technologies and tools I leverage to build world-class applications.</p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, index) => (
               <SkillCard key={category.title} title={category.title} skills={category.skills} />
             ))}
           </div>
         </section>
-        
+
         <section className="mb-24 md:mb-32">
           <Services />
         </section>
-        
+
         <section className="mb-20 md:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -184,7 +184,7 @@ export default function About() {
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Path</Badge>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">Career Journey</h2>
           </motion.div>
-          
+
           <div className="max-w-3xl mx-auto">
             {experiences.map((exp, index) => (
               <motion.div
@@ -205,7 +205,7 @@ export default function About() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

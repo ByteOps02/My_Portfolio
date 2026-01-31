@@ -1,7 +1,7 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
-import { Mail, MapPin, Phone, Clock, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, Clock, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const contactInfo = [
@@ -15,17 +15,11 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Call Me",
-    description: "Available Mon-Fri, 9am - 5pm IST.",
+    description: "Available for interviews.",
     value: "+91 92440 88448",
     href: "tel:+919244088448"
   },
-  {
-    icon: MapPin,
-    title: "Location",
-    description: "Nagpur, Maharashtra",
-    value: "Remote Available",
-    href: null
-  }
+
 ];
 
 const trustSignals = [
@@ -38,9 +32,9 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <main className="pt-24 md:pt-32 pb-16 container mx-auto px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,11 +43,11 @@ export default function Contact() {
           <span className="text-primary font-medium mb-3 block text-sm uppercase tracking-wider">Contact</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">Get in Touch</h1>
           <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg">
-            Have a project in mind or just want to say hi? I'm currently available for freelance work and open to new opportunities.
+            Looking for a dedicated developer to join your engineering team? I am actively seeking full-time opportunities with leading MNCs and innovative tech companies.
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="flex flex-wrap justify-center gap-4 md:gap-6 mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,14 +62,14 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <motion.div 
+          <motion.div
             className="lg:col-span-1 space-y-4"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             {contactInfo.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="p-5 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
               >
@@ -103,8 +97,8 @@ export default function Contact() {
               <p className="text-muted-foreground text-sm mb-3">
                 Let's connect to discuss how I can contribute to your team.
               </p>
-              <a 
-                href="mailto:krishnarammhd@gmail.com?subject=Interview%20Call" 
+              <a
+                href="mailto:krishnarammhd@gmail.com?subject=Interview%20Call"
                 className="inline-flex items-center text-sm font-medium text-primary hover:underline"
               >
                 Schedule a call <span className="ml-1">→</span>
@@ -112,12 +106,15 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="lg:col-span-2 p-6 md:p-8 rounded-2xl bg-card border border-border"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
+            <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 mb-4 text-yellow-600 dark:text-yellow-400 text-sm">
+              Note: The contact form is currently under development and sending messages will not work. Please feel free to email me directly.
+            </div>
             <h2 className="text-xl font-bold mb-6">Send me a message</h2>
             <ContactForm />
           </motion.div>

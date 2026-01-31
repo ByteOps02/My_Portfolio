@@ -103,19 +103,18 @@ export default function ProjectDetail() {
                 <div
                   key={i}
                   onClick={() => setActiveIndex(i)}
-                  className={`w-3 h-3 rounded-full cursor-pointer transition-colors ${
-                    i === activeIndex
-                      ? "bg-white scale-110"
-                      : "bg-white/50 hover:bg-white/75"
-                  }`}
+                  className={`w-3 h-3 rounded-full cursor-pointer transition-colors ${i === activeIndex
+                    ? "bg-white scale-110"
+                    : "bg-white/50 hover:bg-white/75"
+                    }`}
                 />
               ))}
             </div>
           </>
         )}
-        
+
         <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-20 container mx-auto relative z-10">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
@@ -163,7 +162,7 @@ export default function ProjectDetail() {
 
       <main className="container mx-auto px-6 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          
+
           <div className="lg:col-span-8 space-y-20">
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -171,7 +170,7 @@ export default function ProjectDetail() {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="w-10 h-[2px] bg-primary block rounded-full" /> 
+                <span className="w-10 h-[2px] bg-primary block rounded-full" />
                 About the Project
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
@@ -179,38 +178,32 @@ export default function ProjectDetail() {
               </p>
             </motion.section>
 
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <section>
               <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
                 <span className="w-10 h-[2px] bg-primary block rounded-full" />
                 Project Gallery
               </h2>
               <div className="grid gap-8">
                 {project.images.map((img, idx) => (
-                  <motion.div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className="group relative overflow-hidden rounded-2xl border border-border shadow-2xl"
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ duration: 0.3 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-500 z-10" />
-                    <img 
-                      src={img} 
-                      alt={`${project.title} screenshot ${idx + 1}`} 
-                      className="w-full transition-transform duration-700 group-hover:scale-103" 
+
+                    <img
+                      src={img}
+                      alt={`${project.title} screenshot ${idx + 1}`}
+                      className="w-full"
                     />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.section>
+            </section>
           </div>
 
           <div className="lg:col-span-4">
             <div className="sticky top-32 space-y-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
@@ -246,7 +239,7 @@ export default function ProjectDetail() {
               </motion.div>
 
               <Link href={`/project/${nextProject.id}`}>
-                <motion.div 
+                <motion.div
                   className="p-6 rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 cursor-pointer hover:from-primary/10 hover:to-primary/5 transition-all duration-300 group"
                   whileHover={{ y: -2 }}
                 >
