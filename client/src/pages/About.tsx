@@ -56,7 +56,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="relative order-2 lg:order-1"
           >
             <div className="aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden border border-border shadow-xl relative z-10 group">
@@ -75,7 +75,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="order-1 lg:order-2"
           >
             <Badge variant="secondary" className="mb-4 px-3 py-1 text-xs uppercase tracking-widest font-semibold text-primary bg-primary/10 hover:bg-primary/20 border-transparent">
@@ -95,7 +95,7 @@ export default function About() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mt-10">
-              <a href="/client/public/Ram Krishna.pdf.pdf" download>
+              <a href="/Internshala.pdf" download>
                 <Button size="lg" className="rounded-full h-12 px-8 text-base font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
                   <Download className="mr-2 h-4 w-4" /> Download Resume
                 </Button>
