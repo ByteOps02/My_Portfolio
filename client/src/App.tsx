@@ -6,24 +6,34 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import React, { Suspense, lazy } from "react";
+import { Loader2 } from "lucide-react";
 
-import Home from "@/pages/Home";
-import Projects from "@/pages/Projects";
-import ProjectDetail from "@/pages/ProjectDetail";
-import About from "@/pages/About";
-import Contact from "@/pages/Contact";
-import NotFound from "@/pages/not-found";
+const Home = lazy(() => import("@/pages/Home"));
+const Projects = lazy(() => import("@/pages/Projects"));
+const ProjectDetail = lazy(() => import("@/pages/ProjectDetail"));
+const About = lazy(() => import("@/pages/About"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const NotFound = lazy(() => import("@/pages/not-found"));
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/projects" component={Projects} />
-      <Route path="/project/:id" component={ProjectDetail} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense 
+      fallback={
+        <div className="flex items-center justify-center min-h-screen bg-background">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      }
+    >
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/project/:id" component={ProjectDetail} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 

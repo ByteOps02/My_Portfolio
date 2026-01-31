@@ -194,6 +194,8 @@ export default function ProjectDetail() {
                       src={img}
                       alt={`${project.title} screenshot ${idx + 1}`}
                       className="w-full"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 ))}

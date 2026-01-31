@@ -21,6 +21,7 @@ function Hero() {
           src="/images/abstract_dark_premium_fluid_background_for_hero_section.png"
           alt=""
           loading="eager"
+          fetchPriority="high"
           className="w-full h-full object-cover opacity-50"
         />
 
