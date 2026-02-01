@@ -18,7 +18,7 @@ const NotFound = lazy(() => import("@/pages/not-found"));
 
 function Router() {
   return (
-    <Suspense 
+    <Suspense
       fallback={
         <div className="flex items-center justify-center min-h-screen bg-background">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -39,7 +39,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="portfolio-theme-v2">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <ScrollToTop />
