@@ -99,8 +99,35 @@ export const projects: Project[] = [
     repo: "https://github.com/ByteOps02/Snufi_Pharma",
     featured: true,
     images: [
-      "/images/snufi_pharma_website.png",
-      "https://placehold.co/600x400/EEE/31343C"
+      "/images/snufi_pharma_1.png",
+      "/images/snufi_pharma_2.png"
+    ],
+  },
+  {
+    id: "shortify",
+    title: "Shortify",
+    category: "Web App",
+    description:
+      "A modern URL shortener application that transforms long URLs into short, shareable links with custom aliases.",
+    fullDescription:
+      "Shortify is a powerful URL shortening service designed for both individuals and businesses. The application allows users to create short, memorable links from long URLs with optional custom aliases. The clean, intuitive interface makes link creation effortless while the responsive design ensures seamless access across all devices. Built with security in mind, it includes spam detection and malicious URL filtering. Coming soon: Real-time click tracking and analytics with comprehensive statistics including geographic data, device types, and referral sources, QR code generation for each shortened URL, and link expiration settings. The API will enable integration with other applications, making it perfect for social media sharing, marketing campaigns, and general link management.",
+    image: "/images/shortify.png",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redis",
+      "JWT Authentication"
+    ],
+    link: "https://url-shortener-y48t.vercel.app/",
+    repo: "https://github.com/ByteOps02/URL_Shortener",
+    featured: true,
+    images: [
+      "/images/Shortify_HomePage.png",
+      "/images/Shortify_Dashboard.png"
     ],
   },
 ];
@@ -129,8 +156,9 @@ export const skillCategories = [
   {
     title: "Tools & DevOps",
     skills: [
-      { name: "Git / GitHub", level: 80 },
+      { name: "Git Version Control", level: 80 },
       { name: "Docker", level: 45 },
+      { name: "Linux Fundamentals", level: 65 },
       { name: "VS Code", level: 90 },
     ],
   },
@@ -167,7 +195,7 @@ export const services = [
   {
     title: "DevOps",
     description:
-      "Implementing robust CI/CD pipelines, automation, and infrastructure as code to ensure seamless deployment and operations.",
+      "Proficient in Git version control for collaborative development, Docker for containerization, and Linux fundamentals for server management and deployment environments.",
     icon: Palette,
   },
   {

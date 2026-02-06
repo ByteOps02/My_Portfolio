@@ -139,13 +139,20 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 group"
+                className="p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:border-primary/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 group relative overflow-hidden"
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                {/* Animated gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <motion.div
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
                   <value.icon className="h-7 w-7" />
-                </div>
-                <h3 className="font-bold text-xl mb-3">{value.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                </motion.div>
+                <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors duration-300 relative z-10">{value.title}</h3>
+                <p className="text-muted-foreground leading-relaxed relative z-10">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -182,7 +189,12 @@ export default function About() {
             className="text-center mb-16"
           >
             <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Path</Badge>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">Career Journey</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-purple-500">
+                Experiences
+              </span>
+              <span className="text-primary">.</span>
+            </h2>
           </motion.div>
 
           <div className="max-w-3xl mx-auto">

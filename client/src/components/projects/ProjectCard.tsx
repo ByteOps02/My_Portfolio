@@ -10,10 +10,17 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { type Project } from "@/lib/data";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 
 function ProjectCard({ project }: { project: Project }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(0, { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(0, { stiffness: 300, damping: 30 });
 
   useEffect(() => {
     if (project.images.length <= 1) return;
@@ -39,9 +46,49 @@ function ProjectCard({ project }: { project: Project }) {
     );
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!isHovered) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const rotateXValue = ((e.clientY - centerY) / rect.height) * -10;
+    const rotateYValue = ((e.clientX - centerX) / rect.width) * 10;
+
+    rotateX.set(rotateXValue);
+    rotateY.set(rotateYValue);
+
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
   return (
     <Link href={`/project/${project.id}`}>
-      <article className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-md hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300">
+      <motion.article
+        className="group relative cursor-pointer rounded-2xl bg-card border border-border overflow-hidden shadow-md hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
+      >
+        {/* Gradient Border Effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 opacity-50 blur-sm" />
+        </div>
+
         <div className="relative h-60 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300 z-10" />
           <AnimatePresence initial={false}>
@@ -54,7 +101,7 @@ function ProjectCard({ project }: { project: Project }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500"
             />
           </AnimatePresence>
           <div className="absolute top-4 left-4 z-20">
@@ -91,7 +138,7 @@ function ProjectCard({ project }: { project: Project }) {
                 {project.images.map((_, i) => (
                   <div
                     key={i}
-                    className={`w-2 h-2 rounded-full ${i === activeIndex ? "bg-white" : "bg-white/50"
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-white w-6" : "bg-white/50"
                       }`}
                   />
                 ))}
@@ -100,7 +147,7 @@ function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        <div className="p-5 sm:p-6">
+        <div className="p-5 sm:p-6 relative bg-card">
           <h3 className="text-xl sm:text-2xl font-bold font-heading group-hover:text-primary transition-colors duration-200 mb-2">
             {project.title}
           </h3>
@@ -114,7 +161,7 @@ function ProjectCard({ project }: { project: Project }) {
               <Badge
                 key={tech}
                 variant="secondary"
-                className="rounded-full text-xs font-normal px-2.5 py-0.5"
+                className="rounded-full text-xs font-normal px-2.5 py-0.5 hover:bg-primary/20 hover:scale-110 transition-all duration-200"
               >
                 {tech}
               </Badge>
@@ -130,12 +177,12 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <div className="mt-6 flex justify-end">
-            <Button variant="outline" size="sm" className="rounded-full">
-              View Project <ArrowRight className="ml-2 h-4 w-4" />
+            <Button variant="outline" size="sm" className="rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+              View Project <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
-      </article>
+      </motion.article>
     </Link>
   );
 }

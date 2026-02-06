@@ -5,6 +5,9 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import TextReveal from '@/components/ui/TextReveal';
 import TypewriterLoop from '@/components/ui/TypewriterLoop';
+import ParticleBackground from '@/components/ui/ParticleBackground';
+import GradientOrb from '@/components/ui/GradientOrb';
+import MagneticButton from '@/components/ui/MagneticButton';
 
 function Hero() {
   return (
@@ -26,6 +29,15 @@ function Hero() {
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
+
+        {/* Particle Background */}
+        <ParticleBackground particleCount={60} className="opacity-40" />
+
+        {/* Floating Gradient Orbs */}
+        <GradientOrb color="primary" size="lg" className="top-20 -left-32" delay={0} />
+        <GradientOrb color="purple" size="md" className="top-40 right-20" delay={1} />
+        <GradientOrb color="blue" size="md" className="bottom-40 left-20" delay={2} />
+        <GradientOrb color="pink" size="sm" className="bottom-20 right-40" delay={1.5} />
       </div>
 
       {/* Content */}
@@ -36,7 +48,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 border border-primary/20 backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 border border-primary/20 backdrop-blur-sm pulse-glow">
             <Sparkles className="h-4 w-4" />
             Open to New Opportunities
           </span>
@@ -78,23 +90,23 @@ function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <Link href="/projects">
-            <Button
+            <MagneticButton
               size="lg"
               className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-primary/25 transition-all duration-200 group"
             >
               View Projects
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            </MagneticButton>
           </Link>
 
           <Link href="/contact">
-            <Button
+            <MagneticButton
               variant="outline"
               size="lg"
               className="rounded-full px-8 text-base sm:text-lg h-12 sm:h-14 backdrop-blur-sm bg-background/30 border-border hover:bg-background/50"
             >
               Contact Me
-            </Button>
+            </MagneticButton>
           </Link>
         </motion.div>
 
@@ -106,7 +118,7 @@ function Hero() {
           className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground"
         >
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
             <span>Available for freelance</span>
           </div>
 

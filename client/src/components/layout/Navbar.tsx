@@ -43,35 +43,36 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled ? 'bg-background/80 backdrop-blur-md border-b border-border' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled ? 'bg-background/80 backdrop-blur-md border-b border-border' : 'bg-transparent'
+        }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-heading font-bold tracking-tighter hover:text-primary transition-colors">
-          Portfolio<span className="text-accent">.</span>
+        <Link href="/" className="text-2xl font-heading font-bold tracking-tighter hover:opacity-80 transition-opacity">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-purple-500">
+            Portfolio
+          </span>
+          <span className="text-primary">.</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
+            <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary relative group ${
-                location === link.href ? 'text-primary font-semibold' : 'text-muted-foreground'
-              }`}
+              className={`text-sm font-medium transition-colors hover:text-primary relative group ${location === link.href ? 'text-primary font-semibold' : 'text-muted-foreground'
+                }`}
             >
               {link.name}
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-200 ${location === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
           ))}
-          
+
           <Link href="/contact">
             <Button size="sm" variant="default" className="rounded-full px-4 shadow-lg shadow-primary/20">
               Hire me
             </Button>
           </Link>
-          
+
           <Button
             variant="ghost"
             size="icon"
@@ -105,8 +106,8 @@ function Navbar() {
             <SheetContent>
               <nav className="flex flex-col gap-6 mt-12">
                 {navLinks.map((link) => (
-                  <Link 
-                    key={link.name} 
+                  <Link
+                    key={link.name}
                     href={link.href}
                     onClick={handleMobileNavClick}
                     className={`text-lg font-medium ${location === link.href ? 'text-primary' : 'text-foreground'}`}

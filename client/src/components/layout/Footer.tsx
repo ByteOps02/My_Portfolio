@@ -18,23 +18,26 @@ function Footer() {
 
   return (
     <footer className="bg-card/50 border-t border-border">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <Link href="/" className="text-2xl font-heading font-bold tracking-tighter mb-4 block hover:opacity-80 transition-opacity">
-              Portfolio<span className="text-primary">.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-purple-500">
+                Portfolio
+              </span>
+              <span className="text-primary">.</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               Crafting digital experiences with a focus on motion, aesthetics, and performance. Available for freelance work worldwide.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
-                <a 
+                <a
                   key={social.label}
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="p-2.5 rounded-lg bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-lg bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
                   aria-label={social.label}
                 >
                   <social.icon className="h-4 w-4" />
@@ -48,7 +51,7 @@ function Footer() {
             <ul className="space-y-3">
               {navLinks.map((item) => (
                 <li key={item}>
-                  <Link 
+                  <Link
                     href={`/${item.toLowerCase()}`}
                     className="text-muted-foreground text-sm hover:text-primary transition-colors"
                   >
@@ -65,7 +68,7 @@ function Footer() {
               Have a project in mind?
             </p>
             <Link href="/contact">
-              <Button variant="outline" size="sm" className="rounded-full">
+              <Button variant="outline" size="sm" className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
                 Let's Talk
               </Button>
             </Link>
@@ -74,13 +77,13 @@ function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-border gap-4">
           <p className="text-xs text-muted-foreground text-center sm:text-left">
-            © {new Date().getFullYear()} Portfolio. Designed & Built with care.
+            © {new Date().getFullYear()} <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-primary to-purple-500 font-semibold">Portfolio</span><span className="text-primary font-semibold">.</span> Designed & Built with care.
           </p>
-          
-          <Button 
-            size="icon" 
-            variant="ghost" 
-            className="rounded-full h-9 w-9 hover:bg-primary/10"
+
+          <Button
+            size="icon"
+            variant="ghost"
+            className="rounded-full h-9 w-9 hover:bg-primary/10 hover:scale-110 transition-all"
             onClick={scrollToTop}
             aria-label="Scroll to top"
           >
