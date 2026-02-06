@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 import React, { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/next";
 
 const Home = lazy(() => import("@/pages/Home"));
 const Projects = lazy(() => import("@/pages/Projects"));
@@ -48,6 +49,7 @@ function App() {
           <Toaster />
           <Router />
           <SpeedInsights />
+          <Analytics />
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>
