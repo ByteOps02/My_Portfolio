@@ -8,6 +8,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import React, { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const Home = lazy(() => import("@/pages/Home"));
 const Projects = lazy(() => import("@/pages/Projects"));
@@ -46,6 +47,7 @@ function App() {
           <CustomCursor />
           <Toaster />
           <Router />
+          <SpeedInsights />
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>
