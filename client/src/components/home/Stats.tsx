@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { Code2, FolderGit2, Award, Coffee } from 'lucide-react';
 
 const stats = [
-  { label: 'Skills Mastered', value: 12, suffix: '+', icon: Code2, color: 'from-blue-500 to-cyan-500' },
-  { label: 'Projects Completed', value: 15, suffix: '+', icon: FolderGit2, color: 'from-purple-500 to-pink-500' },
+  { label: 'Skills Mastered', value: 8, suffix: '+', icon: Code2, color: 'from-blue-500 to-cyan-500' },
+  { label: 'Projects Completed', value: 4, suffix: '+', icon: FolderGit2, color: 'from-purple-500 to-pink-500' },
   { label: 'Certifications Earned', value: 1, suffix: '+', icon: Award, color: 'from-orange-500 to-red-500' },
-  { label: 'Cups of Coffee', value: 200, suffix: '+', icon: Coffee, color: 'from-green-500 to-emerald-500' },
+  { label: 'Cups of Coffee', value: 125, suffix: '+', icon: Coffee, color: 'from-green-500 to-emerald-500' },
 ];
 
 export default function Stats() {
